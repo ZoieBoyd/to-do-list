@@ -2,7 +2,7 @@
 
 import "./styles.css";
 
-import { loadNav } from "./dom";
+import { loadNav } from "./modules/dom";
 
 //Possible Modules:
 //To Do
