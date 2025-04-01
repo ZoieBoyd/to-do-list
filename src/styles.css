@@ -1,0 +1,87 @@
+@font-face {
+    font-family: 'roboto';
+    src: url("./fonts/Roboto.woff2") format(".woff2"), 
+         url("./fonts/Roboto.woff") format(".woff");
+    font-style: normal;
+    font-weight: normal;
+}
+
+:root.dark {
+    --secondary-bg-color: #23242A;
+    --bg-color: #1E1F23; 
+    --text-color: #DAD6EE;
+    --highlight-color: #A163EA;
+}
+
+body {
+    display: grid;
+    grid-auto-flow: column;
+    color: white;
+    background-color: var(--bg-color);
+    font-family: 'roboto', sans-serif;
+    /*testting styles below*/
+    font-size: 2rem;
+}
+
+#to-do-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+button, dialog {
+    border: none;
+}
+
+.task-container {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    padding: 0 2rem;
+    background-color: var(--secondary-bg-color);
+    border-radius: 5px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: var(--text-color);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+}
+
+input[type="checkbox"]:checked {
+    appearance: auto;
+    clip-path: circle(50%);
+    accent-color: var(--highlight-color);
+}
+
+.task-container > button{
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 2rem;
+    height: 2rem;
+}
+
+.delete-btn {
+    background: url("./images/trash.svg");
+}
+
+.edit-btn {
+    background: url("./images/edit.svg");
+}
+
+dialog {
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
+    border-radius: 20px;
+}
+
+#close-modal-btn {
+    background: url("./images/close.svg");
+    width: 2rem;
+    height: 2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
