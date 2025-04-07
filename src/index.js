@@ -2,18 +2,6 @@
 
 import "./styles.css";
 
-import { loadNav } from "./modules/dom";
+import { loadPageContent } from "./modules/dom";
 
-//Possible Modules:
-//To Do
-//Project
-
-// Project class??
-//Constructor properties include: Project name, a toDoList array?
-//You can add or delete projects
-//Each project will ocupy the main section??? i.e. each project will have a tab
-
-
-//console.log(projects);
-
-loadNav();
+loadPageContent();

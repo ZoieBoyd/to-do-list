@@ -16,10 +16,10 @@
             </p>
             <p>
                 <label for="">Priority</label>
-                <select name="" id="" placeholder="Select Priority">
-                    <option value="">High</option>
-                    <option value="">Medium</option>
-                    <option v<input type="">Low</option>
+                <select name="priority" id="task-priority" placeholder="Select Priority">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
                 </select>
             </p>
             <p>
@@ -30,12 +30,33 @@
         </form>
     </dialog>
     <nav id = "nav">
+        <div id = "user-details">
+            <img src="./images/profile-picture.svg" alt="user profile image">
+            <h4>Zoie Boyd</h4>
+        </div>
+        <section>
+            <button>Today</button>
+            <button>This Week</button>
+            <button>This Month</button>
+            <button>Anytime</button>
+        </section>
         <section id = "project-list">
+            <h5>Projects</h5>
+        </section>
+        <section>
+            <button>Notes</button>
         </section>
     </nav>
     <main>
         <section id = "to-do-container">
         </section>
     </main>
+    <section>
+        <div id = "theme-toggle-container">
+            <img src="images/sun.svg" alt="Light mode icon" class="icon">
+            <input type="checkbox" id = "theme-switch" checked = "true">
+            <img src="images/moon.svg" alt="Dark mode icon" class="icon">
+        </div>
+    </section>
 </body>
 </html>

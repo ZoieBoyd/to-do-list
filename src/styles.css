@@ -6,27 +6,69 @@
     font-weight: normal;
 }
 
+:root {
+    --scroll-bar-width: 8px;
+    --highlight-color: #A163EA;
+}
+
 :root.dark {
     --secondary-bg-color: #23242A;
     --bg-color: #1E1F23; 
     --text-color: #DAD6EE;
-    --highlight-color: #A163EA;
+}
+
+:root.light {
+    --secondary-bg-color: #f2f2f2;
+    --bg-color: #FFFFFF;
+    --text-color: #1E1F23;
 }
 
 body {
+    margin: 0;
+    width: calc(100vw - var(--scroll-bar-width));
     display: grid;
     grid-auto-flow: column;
-    color: white;
+    grid-template-columns: 2fr 7fr 2fr;
+    color: var(--text-color);
     background-color: var(--bg-color);
     font-family: 'roboto', sans-serif;
-    /*testting styles below*/
-    font-size: 2rem;
+}
+
+#nav {
+    background-color: var(--secondary-bg-color);
+    padding: 1rem 1.4rem;
+    width: 16vw;
+    
+}
+
+#nav, #nav > section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+#user-details {
+    display: flex;
+    gap: 1rem;
+}
+
+#user-details > img {
+    width: 2.3rem;
+}
+
+#user-details > h4 {
+    font-size: 1.5em;
+}
+
+h1 {
+    font-size: 2.5rem;
+    padding-left: 6rem;
 }
 
 #to-do-container {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 button, dialog {
@@ -34,34 +76,53 @@ button, dialog {
 }
 
 .task-container {
+    align-self: center;
+    width: 70%;
+    height: 5rem;
     display: grid;
+    grid-template-columns: 0.25fr 2fr 0.7fr 0.15fr 0.15fr;
     grid-auto-flow: column;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     background-color: var(--secondary-bg-color);
     border-radius: 5px;
+    border-left: 1rem solid;
 }
 
-input[type="checkbox"] {
+.complete-checkbox {
     appearance: none;
     -webkit-appearance: none;
-    background-color: var(--text-color);
+    background-color: none;
+    border: 3px solid var(--highlight-color);
     border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
+    width: 2.2rem;
+    height: 2.2rem;
 }
 
-input[type="checkbox"]:checked {
+.complete-checkbox:hover {
+    background-color: var(--highlight-color);
+}
+
+.complete-checkbox:checked {
     appearance: auto;
     clip-path: circle(50%);
     accent-color: var(--highlight-color);
 }
 
-.task-container > button{
+#task-title {
+    font-size: 1.4em;
+}
+
+#task-date {
+    font-size: 1.25em;
+    opacity: 0.6;
+}
+
+.task-container button {
     background-size: contain;
     background-repeat: no-repeat;
-    width: 2rem;
-    height: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
 }
 
 .delete-btn {
@@ -72,10 +133,78 @@ input[type="checkbox"]:checked {
     background: url("./images/edit.svg");
 }
 
+:root.light .icon,
+:root.light #user-details > img,
+:root.light .delete-btn,
+:root.light .edit-btn {
+    filter: brightness(0.1);
+}
+
+#add-task-btn {
+    width: 80%;
+    align-self: center; 
+    text-align: left;
+    background-color: transparent;
+    color: var(--text-color);   
+}
+
+#theme-toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1rem 2rem;
+    gap: 0.4rem;
+}
+
+#theme-toggle-container img {
+    height: 2rem;
+    width: 2rem;
+}
+
+#theme-switch {
+    position: relative;
+    height: 1.7rem;
+    width: 3.6rem;
+    border-radius: 20px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #dddcdc;
+    transition: all .3s ease;
+}
+
+#theme-switch:checked {
+    background-color: var(--highlight-color);
+}
+
+
+#theme-switch::before {
+    position: absolute;
+    bottom: 0.15rem;
+    left: 0.16rem;
+    content: "";
+    display: block;
+    height: 1.4rem;
+    width: 1.4rem;
+    border-radius: 50%;
+    background-color: white;
+    transition: all .3s ease;
+}
+
+#theme-switch:checked::before {
+    transform: translateX(calc(3.6rem - 1.4rem - 0.33rem)); /* switch width - toggle circle width - extra padding*/
+}
+
 dialog {
+    font-size: 1.75rem;
     background-color: var(--secondary-bg-color);
     color: var(--text-color);
     border-radius: 20px;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
 }
 
 #close-modal-btn {
