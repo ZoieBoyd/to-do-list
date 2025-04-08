@@ -4,6 +4,8 @@ import { createTextElement } from "./utils";
 import { deleteTask } from "./tasks";
 import { createNewProject } from "./project";
 
+import folder  from "../images/folder.svg";
+
 const root = document.documentElement;
 root.className = "dark"; // Dark Mode is the page's default setting
 
@@ -27,11 +29,15 @@ function loadNav() {
     const projectTitles = getProjectNames();
     for (const name in projectTitles) {
         const projectName = projectTitles[name];
-        const projectTitle = createTextElement("button", projectName);
-        projectTitle.addEventListener("click", () => loadProject(projectName));
-        projectList.appendChild(projectTitle);
+        const projectButton = document.createElement("button");
+        const folderIcon = document.createElement("img");
+        folderIcon.src = folder;
+        folderIcon.classList.add("icon");
+        projectButton.append(folderIcon, document.createTextNode(projectName));
+        projectButton.addEventListener("click", () => loadProject(projectName));
+        projectList.appendChild(projectButton);
     }
-        projectList.appendChild(createAddProjectButton());
+    //projectList.appendChild(createAddProjectButton());
 }
 
 function loadProject(project) {
@@ -86,7 +92,7 @@ function renderTasks(toDoList, project) {
 
 function createDeleteButton(toDoList, task, project) {
     const deleteButton = document.createElement("button");
-    deleteButton.className = "delete-btn";
+    deleteButton.classList.add("delete-btn", "icon");
     deleteButton.addEventListener("click", () => {
         deleteTask(toDoList, task)
         loadProject(project);
@@ -96,7 +102,7 @@ function createDeleteButton(toDoList, task, project) {
 
 function createEditButton () {
     const editButton = document.createElement("button");
-    editButton.className = "edit-btn";
+    editButton.classList.add("edit-btn", "icon");
     //editButton.addEventListener("click", () => dialog.showModal());
     return editButton;
 }
@@ -116,9 +122,10 @@ function createAddTaskButton() {
     return addTaskButton;
 }
 
+/*
 function createAddProjectButton() {
     const addProjectButton = createTextElement("button", "Create New Project");
     addProjectButton.addEventListener("click", () => {
     });
     return addProjectButton;
-}
+*/
