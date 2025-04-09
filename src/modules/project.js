@@ -29,4 +29,4 @@ export function getToDoList(projectName) {
 createTask(projects[0].toDoList, "Schedule a doctor's appointment", "high", format(new Date("2025-03-30"), 'MMM dd'));
 createTask(projects[0].toDoList, "Attend a meeting", "medium", format(new Date("2025-03-30"), 'MMM dd'));
 projects[0].toDoList[1].toggleComplete();
-createTask(projects[0].toDoList, "Walk the dog", "low", format(new Date("2025-03-30"), 'MMM dd'))
+createTask(projects[0].toDoList, "Walk the dog", "low", format(new Date("2025-03-30"), 'MMM dd'));

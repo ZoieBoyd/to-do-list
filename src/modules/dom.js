@@ -5,9 +5,10 @@ import { deleteTask } from "./tasks";
 import { createNewProject } from "./project";
 
 import folder  from "../images/folder.svg";
+import add from "../images/add.svg";
 
 const root = document.documentElement;
-root.className = "dark"; // Dark Mode is the page's default setting
+root.className = "dark"; // Dark Mode is the page's default setting (because it's superior)
 
 const toDoContainer = document.getElementById("to-do-container");
 const clearMainContent = () => toDoContainer.replaceChildren();
@@ -34,10 +35,19 @@ function loadNav() {
         folderIcon.src = folder;
         folderIcon.classList.add("icon");
         projectButton.append(folderIcon, document.createTextNode(projectName));
-        projectButton.addEventListener("click", () => loadProject(projectName));
+        projectButton.addEventListener("click", () => {
+            loadProject(projectName);
+            setActiveNavItem(projectButton);
+        });
         projectList.appendChild(projectButton);
     }
     //projectList.appendChild(createAddProjectButton());
+}
+
+function setActiveNavItem(activeButton) {
+    const navButtons = document.querySelectorAll("#nav * > button");
+    navButtons.forEach(btn => btn.classList.remove("active"));
+    activeButton.classList.add("active");
 }
 
 function loadProject(project) {
@@ -117,7 +127,12 @@ function createCompleteCheckbox(task) {
 }
 
 function createAddTaskButton() {
-    const addTaskButton = createTextElement("button", "Add task", "add-task-btn");
+    const addTaskButton = document.createElement("button");
+    addTaskButton.id = "add-task-btn";
+    const addIcon = document.createElement("img");
+    addIcon.src = add;
+    addIcon.classList.add("icon");
+    addTaskButton.append(addIcon, document.createTextNode("Add task"));
     addTaskButton.addEventListener("click", () => dialog.showModal());
     return addTaskButton;
 }

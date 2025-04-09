@@ -28,6 +28,7 @@
 }
 
 body {
+    overflow-x: hidden;
     padding: 0;
     margin: 0;
     width: calc(100vw - var(--scroll-bar-width));
@@ -38,6 +39,16 @@ body {
     background-color: var(--bg-color);
     font-family: 'roboto', sans-serif;
     min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 0.7rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--highlight-color);
+    border-radius: 5px;
 }
 
 #nav {
@@ -57,8 +68,9 @@ body {
     align-items: center;
     text-align: left;
     font-size: 1.15rem;
-    gap: 0.75rem;
-    padding: 0.15rem 1rem;
+    gap: 1rem;
+    padding: 0.35rem 1.25rem;
+    width: 95%;
     background-color: transparent;
     border-radius: 5px;
     color: var(--text-color);
@@ -66,6 +78,11 @@ body {
 
 #nav * > button:hover {
     background-color: var(--bg-color)
+}
+
+#nav * > button.active {
+    background-color: transparent;
+    filter: invert(45%) sepia(83%) saturate(1845%) hue-rotate(228deg) brightness(80%) contrast(98%);
 }
 
 #user-details {
@@ -160,11 +177,15 @@ button, dialog {
 }
 
 #add-task-btn {
-    width: 80%;
-    align-self: center; 
+    display: flex;
+    align-items: center;
+    align-self: center;
     text-align: left;
+    gap: 0.5rem;
+    width: 73%;
     background-color: transparent;
-    color: var(--text-color);   
+    color: var(--text-color);
+    font-size: 1.25rem;   
 }
 
 #theme-toggle-container {
