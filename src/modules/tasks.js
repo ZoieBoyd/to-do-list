@@ -5,7 +5,7 @@ export class Task {
         this.dueDate = dueDate; 
         this.isComplete = false;
     }
-    
+
     toggleComplete() {
         this.isComplete = !this.isComplete;
     }

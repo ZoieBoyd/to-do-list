@@ -7,8 +7,10 @@
 }
 
 :root {
-    --scroll-bar-width: 8px;
     --highlight-color: #A163EA;
+    --high-priority: #EA6365;
+    --medium-priority: #EA9B63;
+    --low-priority: #7AEA63;
 }
 
 :root.dark {
@@ -29,11 +31,8 @@
 
 body {
     overflow-x: hidden;
-    padding: 0;
     margin: 0;
-    width: calc(100vw - var(--scroll-bar-width));
     display: grid;
-    grid-auto-flow: column;
     grid-template-columns: 2fr 7fr 2fr;
     color: var(--text-color);
     background-color: var(--bg-color);
@@ -55,7 +54,6 @@ body {
     background-color: var(--secondary-bg-color);
     padding: 1rem 1.4rem;
     width: 16vw;
-    height: 100%;
 }
 
 #nav, #nav > section {
@@ -126,6 +124,18 @@ button, dialog {
     background-color: var(--secondary-bg-color);
     border-radius: 5px;
     border-left: 1rem solid;
+}
+
+.high-priority {
+    border-color: var(--high-priority);
+}
+
+.medium-priority {
+    border-color: var(--medium-priority);
+}
+
+.low-priority {
+    border-color: var(--low-priority);
 }
 
 .complete-checkbox {

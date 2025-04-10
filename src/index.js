@@ -10,6 +10,6 @@
 
 import "./styles.css";
 
-import { loadPageContent } from "./modules/dom";
+import { loadPageContent } from "./dom/dom";
 
 loadPageContent();
