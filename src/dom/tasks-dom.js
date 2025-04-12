@@ -1,13 +1,12 @@
 import { createTextElement } from "../modules/utils";
 import { deleteTask } from "../modules/tasks";
 import { getToDoList } from "../modules/project";
+import { clearMainContent } from "../modules/utils";
 
 import add from "../images/add.svg";
 
-const toDoContainer = document.getElementById("to-do-container");
+const toDoContainer = document.getElementById("main-content");
 const dialog = document.querySelector("dialog")
-
-const clearMainContent = () => toDoContainer.replaceChildren();
 
 function renderTasks(toDoList, project) {
     // TODO: Move this somewhere more appropriate
@@ -86,6 +85,7 @@ export function loadProject(project) {
     clearMainContent();
     renderTasks(toDo, project);
 }
+
 
 // TODO: Move this somewhere more appropriate
 const closeAddTaskButton = document.getElementById("close-modal-btn");

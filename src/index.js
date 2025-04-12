@@ -8,7 +8,7 @@
 - Don't cry
 */
 
-import "./styles.css";
+import "./styles/styles.css";
 
 import { loadPageContent } from "./dom/dom";
 

@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'roboto';
-    src: url("./fonts/Roboto.woff2") format(".woff2"), 
-         url("./fonts/Roboto.woff") format(".woff");
+    src: url("../fonts/Roboto.woff2") format(".woff2"), 
+         url("../fonts/Roboto.woff") format(".woff");
     font-style: normal;
     font-weight: normal;
 }
@@ -101,7 +101,7 @@ h1 {
     padding-left: 6rem;
 }
 
-#to-do-container {
+#main-content {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -175,11 +175,11 @@ button, dialog {
 }
 
 .delete-btn {
-    background: url("./images/trash.svg");
+    background: url("../images/trash.svg");
 }
 
 .edit-btn {
-    background: url("./images/edit.svg");
+    background: url("../images/edit.svg");
 }
 
 :root.light .icon {
@@ -196,6 +196,19 @@ button, dialog {
     background-color: transparent;
     color: var(--text-color);
     font-size: 1.25rem;   
+}
+
+#notes-container {
+    margin-left: 10rem;
+    column-count: 3;
+    column-gap: 1.5rem;
+}
+
+.note {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+    padding: 1rem 2.5rem;
+    background-color: var(--secondary-bg-color)
 }
 
 #theme-toggle-container {
@@ -258,7 +271,7 @@ dialog::backdrop {
 }
 
 #close-modal-btn {
-    background: url("./images/close.svg");
+    background: url("../images/close.svg");
     width: 2rem;
     height: 2rem;
     background-size: contain;

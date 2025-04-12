@@ -1,4 +1,3 @@
-
 import { setTheme } from "./theme-dom";
 import { loadNav } from "./nav-dom";
 import { loadProject } from "./tasks-dom";

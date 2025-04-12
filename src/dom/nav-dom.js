@@ -1,13 +1,15 @@
 import { getProjectNames } from "../modules/project";
 import folder  from "../images/folder.svg";
 import { loadProject } from "./tasks-dom";
+import { renderNotes } from "./notes-dom";
 
-const noteNavItem = document.querySelector("#note-nav-item");
+const noteNavItem = document.getElementById("note-nav-item");
 
 export function loadNav() {
-    noteNavItem.addEventListener("click", () => {
-    })
     loadProjectNavItems();
+    noteNavItem.addEventListener("click", () => {
+        renderNotes();
+    });
 }
 
 function loadProjectNavItems() {

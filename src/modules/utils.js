@@ -6,3 +6,6 @@ export function createTextElement(tag, text, id) {
     }
     return textElement;
 }
+
+const mainContent = document.getElementById("main-content");
+export const clearMainContent = () => mainContent.replaceChildren();
