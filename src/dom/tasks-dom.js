@@ -57,7 +57,7 @@ function createAddTaskButton() {
 
 function createDeleteButton(toDoList, task, project) {
     const deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-btn", "icon");
+    deleteButton.classList.add("task-delete-btn", "icon");
     deleteButton.addEventListener("click", () => {
         deleteTask(toDoList, task)
         loadProject(project);

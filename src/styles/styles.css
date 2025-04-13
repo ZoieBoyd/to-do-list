@@ -25,6 +25,10 @@
     --text-color: #1E1F23;
 }
 
+:root.light .icon {
+    filter: brightness(0.1);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -50,52 +54,6 @@ body {
     border-radius: 5px;
 }
 
-#nav {
-    background-color: var(--secondary-bg-color);
-    padding: 1rem 1.4rem;
-    width: 16vw;
-}
-
-#nav, #nav > section {
-    display: flex;
-    flex-direction: column;
-}
-
-#nav * > button {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    font-size: 1.15rem;
-    gap: 1rem;
-    padding: 0.35rem 1.25rem;
-    width: 95%;
-    background-color: transparent;
-    border-radius: 5px;
-    color: var(--text-color);
-} 
-
-#nav * > button:hover {
-    background-color: var(--bg-color)
-}
-
-#nav * > button.active {
-    background-color: transparent;
-    filter: invert(45%) sepia(83%) saturate(1845%) hue-rotate(228deg) brightness(80%) contrast(98%);
-}
-
-#user-details {
-    display: flex;
-    gap: 1rem;
-}
-
-#user-details > img {
-    width: 2.3rem;
-}
-
-#user-details > h4 {
-    font-size: 1.5em;
-}
-
 h1 {
     font-size: 2.5rem;
     padding-left: 6rem;
@@ -109,106 +67,6 @@ h1 {
 
 button, dialog {
     border: none;
-}
-
-.task-container {
-    align-self: center;
-    margin-left: 6rem;
-    width: 80%;
-    height: 5rem;
-    display: grid;
-    grid-template-columns: 0.25fr 2fr 0.7fr 0.15fr 0.15fr;
-    grid-auto-flow: column;
-    align-items: center;
-    padding: 0 1.5rem;
-    background-color: var(--secondary-bg-color);
-    border-radius: 5px;
-    border-left: 1rem solid;
-}
-
-.high-priority {
-    border-color: var(--high-priority);
-}
-
-.medium-priority {
-    border-color: var(--medium-priority);
-}
-
-.low-priority {
-    border-color: var(--low-priority);
-}
-
-.complete-checkbox {
-    appearance: none;
-    -webkit-appearance: none;
-    background-color: none;
-    border: 3px solid var(--highlight-color);
-    border-radius: 50%;
-    width: 2.2rem;
-    height: 2.2rem;
-}
-
-.complete-checkbox:hover {
-    background-color: var(--highlight-color);
-}
-
-.complete-checkbox:checked {
-    appearance: auto;
-    clip-path: circle(50%);
-    accent-color: var(--highlight-color);
-}
-
-#task-title {
-    font-size: 1.4em;
-}
-
-#task-date {
-    font-size: 1.25em;
-    opacity: 0.6;
-}
-
-.task-container button {
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 2.25rem;
-    height: 2.25rem;
-}
-
-.delete-btn {
-    background: url("../images/trash.svg");
-}
-
-.edit-btn {
-    background: url("../images/edit.svg");
-}
-
-:root.light .icon {
-    filter: brightness(0.1);
-}
-
-#add-task-btn {
-    display: flex;
-    align-items: center;
-    align-self: center;
-    text-align: left;
-    gap: 0.5rem;
-    width: 73%;
-    background-color: transparent;
-    color: var(--text-color);
-    font-size: 1.25rem;   
-}
-
-#notes-container {
-    margin-left: 10rem;
-    column-count: 3;
-    column-gap: 1.5rem;
-}
-
-.note {
-    break-inside: avoid;
-    margin-bottom: 1.5rem;
-    padding: 1rem 2.5rem;
-    background-color: var(--secondary-bg-color)
 }
 
 #theme-toggle-container {
@@ -270,7 +128,7 @@ dialog::backdrop {
     backdrop-filter: blur(3px);
 }
 
-#close-modal-btn {
+#close-modal-btn, .note-delete-btn {
     background: url("../images/close.svg");
     width: 2rem;
     height: 2rem;

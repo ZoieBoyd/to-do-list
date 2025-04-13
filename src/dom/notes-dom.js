@@ -1,6 +1,8 @@
 import { createTextElement } from "../modules/utils";
 import { clearMainContent } from "../modules/utils";
 import { getNotes } from "../modules/notes";
+import { deleteNote } from "../modules/notes";
+
 
 const mainContainer = document.getElementById("main-content");
 export function renderNotes() {
@@ -14,10 +16,21 @@ export function renderNotes() {
         const noteElement = document.createElement("div");
         noteElement.className = "note";
         noteElement.append(
-            createTextElement("h4", note["title"], "note-title"),
+            createDeleteButton(note),
+            createTextElement("h3", note["title"], "note-title"),
             createTextElement("p", note["content"], "note-content")
         );
         notesContainer.appendChild(noteElement);
     }
     mainContainer.appendChild(notesContainer);
+}
+
+function createDeleteButton(note) {
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("note-delete-btn", "icon");
+    deleteButton.addEventListener("click", () => {
+        deleteNote(note);
+        renderNotes();
+    });
+    return deleteButton;
 }

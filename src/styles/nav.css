@@ -1,0 +1,45 @@
+nav {
+    background-color: var(--secondary-bg-color);
+    padding: 1rem 1.4rem;
+    width: 16vw;
+}
+
+#nav, #nav > section {
+    display: flex;
+    flex-direction: column;
+}
+
+#nav * > button {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-size: 1.15rem;
+    gap: 1rem;
+    padding: 0.35rem 1.25rem;
+    width: 95%;
+    background-color: transparent;
+    border-radius: 5px;
+    color: var(--text-color);
+} 
+
+#nav * > button:hover {
+    background-color: var(--bg-color)
+}
+
+#nav * > button.active {
+    background-color: transparent;
+    filter: invert(45%) sepia(83%) saturate(1845%) hue-rotate(228deg) brightness(80%) contrast(98%);
+}
+
+#user-details {
+    display: flex;
+    gap: 1rem;
+}
+
+#user-details > img {
+    width: 2.3rem;
+}
+
+#user-details > h4 {
+    font-size: 1.5em;
+}

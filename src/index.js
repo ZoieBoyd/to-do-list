@@ -9,6 +9,9 @@
 */
 
 import "./styles/styles.css";
+import "./styles/nav.css";
+import "./styles/tasks.css";
+import "./styles/notes.css";
 
 import { loadPageContent } from "./dom/dom";
 

@@ -1,0 +1,19 @@
+#notes-container {
+    margin-left: 10rem;
+    column-width: 300px;
+    column-gap: 1.5rem;
+}
+
+.note {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+    padding: 1rem 2.5rem;
+    background-color: var(--secondary-bg-color)
+}
+
+.note-delete-btn {
+    align-self: flex-end;
+}
