@@ -3,6 +3,7 @@ import { clearMainContent } from "../modules/utils";
 import { getNotes } from "../modules/notes";
 import { deleteNote } from "../modules/notes";
 
+import add from "../images/add.svg";
 
 const mainContainer = document.getElementById("main-content");
 export function renderNotes() {
@@ -22,7 +23,7 @@ export function renderNotes() {
         );
         notesContainer.appendChild(noteElement);
     }
-    mainContainer.appendChild(notesContainer);
+    mainContainer.append(notesContainer, createAddNoteButton());
 }
 
 function createDeleteButton(note) {
@@ -33,4 +34,14 @@ function createDeleteButton(note) {
         renderNotes();
     });
     return deleteButton;
+}
+
+function createAddNoteButton() {
+    const addNoteButton = document.createElement("button");
+    addNoteButton.classList.add("add-element-btn");
+    const addIcon = document.createElement("img");
+    addIcon.src = add; 
+    addIcon.classList.add("icon");
+    addNoteButton.append(addIcon, document.createTextNode("Add note"));
+    return addNoteButton;
 }

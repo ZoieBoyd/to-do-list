@@ -11,14 +11,6 @@ const notes = [
     new Note("hello", "this is a test"),
 ];
 
-export function getNotes() {
-    return notes;
-}
-
-export function createNewNote(title, content) {
-    notes.push(new Note(title, content));
-}
-
-export function deleteNote(note) {
-    notes.splice(notes.indexOf(note), 1); 
-}
+export const getNotes = () => notes;
+export const createNewNote = (title, content) =>  notes.push(new Note(title, content));
+export const deleteNote = (note) => notes.splice(notes.indexOf(note), 1);

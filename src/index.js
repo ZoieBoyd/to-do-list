@@ -7,7 +7,6 @@
 - Add Notes page
 - Don't cry
 */
-
 import "./styles/styles.css";
 import "./styles/nav.css";
 import "./styles/tasks.css";

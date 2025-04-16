@@ -1,7 +1,7 @@
-import { createTextElement } from "../modules/utils";
+import { createTextElement, clearMainContent } from "../modules/utils";
 import { deleteTask } from "../modules/tasks";
 import { getToDoList } from "../modules/project";
-import { clearMainContent } from "../modules/utils";
+import { format } from "date-fns";
 
 import add from "../images/add.svg";
 
@@ -21,7 +21,7 @@ function renderTasks(toDoList, project) {
         taskContainer.append(
             createCompleteCheckbox(task),
             createTextElement("p", task["title"], "task-title"),
-            createTextElement("p", task["dueDate"], "task-date"),
+            createTextElement("p", format(task["dueDate"], 'MMM dd'), "task-date"),
             createEditButton(),
             createDeleteButton(toDoList, task, project)
         );
@@ -46,7 +46,7 @@ function setPriorityColor(task, taskContainer) {
 
 function createAddTaskButton() {
     const addTaskButton = document.createElement("button");
-    addTaskButton.id = "add-task-btn";
+    addTaskButton.classList.add("add-element-btn");    
     const addIcon = document.createElement("img");
     addIcon.src = add;
     addIcon.classList.add("icon");

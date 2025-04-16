@@ -1,12 +1,9 @@
 nav {
+    display: flex;
+    flex-direction: column;
     background-color: var(--secondary-bg-color);
     padding: 1rem 1.4rem;
     width: 16vw;
-}
-
-#nav, #nav > section {
-    display: flex;
-    flex-direction: column;
 }
 
 #nav * > button {
@@ -42,4 +39,8 @@ nav {
 
 #user-details > h4 {
     font-size: 1.5em;
+}
+
+footer {
+   margin-top: auto;
 }

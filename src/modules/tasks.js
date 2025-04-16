@@ -11,14 +11,11 @@ export class Task {
     }
 }
 
-export function deleteTask(toDoList, task) {
+export const deleteTask = (toDoList, task) => 
     toDoList.splice(toDoList.indexOf(task), 1);
-}
 
-export function createTask(toDoList, title, priority, dueDate) {
+export const createTask = (toDoList, title, priority, dueDate) =>
     toDoList.push(new Task(title, priority, dueDate));
-}
 
-function editTask(index, title, dueDate, priority) {
+export const editTask = (toDoList, index, title, dueDate, priority) =>
     toDoList.splice(index, 1, new Task(title, priority, dueDate));
-}
