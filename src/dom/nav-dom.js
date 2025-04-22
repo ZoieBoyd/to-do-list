@@ -1,39 +1,73 @@
-import { getProjectNames } from "../modules/project";
+import { getAllProjects } from "../modules/project";
+import { getWeekTasks, getTodayTasks, getAllTasks, getMonthTasks, getTasksByProject} from "../modules/tasks";
 import folder  from "../images/folder.svg";
-import { loadProject } from "./tasks-dom";
 import { renderNotes } from "./notes-dom";
-
-const noteNavItem = document.getElementById("note-nav-item");
+import { renderTasks } from "./tasks-dom";
+import { clearMainContent } from "../modules/utils";
 
 export function loadNav() {
     loadProjectNavItems();
-    noteNavItem.addEventListener("click", () => {
-        setActiveNavItem(noteNavItem),
-        renderNotes();
-    });
+    handleTimeNavItems();
+    handleProjectNavItems();
+    handleNotesNav();
 }
 
-function loadProjectNavItems() {
-    const projectList = document.getElementById("project-list");
-    const projectTitles = getProjectNames();
-    for (const name in projectTitles) {
-        const projectName = projectTitles[name];
+export function loadProjectNavItems() {
+    const projectList = document.getElementById("project-nav-options");
+    const projects = getAllProjects();
+    for(const project of projects) {
+        const projectName = project.title;
         const projectButton = document.createElement("button");
+        projectButton.id = projectName;
         projectButton.classList.add("nav-option");
         const folderIcon = document.createElement("img");
         folderIcon.src = folder;
         folderIcon.classList.add("icon");
         projectButton.append(folderIcon, document.createTextNode(projectName));
-        projectButton.addEventListener("click", () => {
-            loadProject(projectName);
-            setActiveNavItem(projectButton);
-        });
         projectList.appendChild(projectButton);
     }
 }
-
-function setActiveNavItem(activeButton) {
+    
+export function setActiveNavItem(activeButton) {
     const navButtons = document.querySelectorAll(".nav-option");
     navButtons.forEach(btn => btn.classList.remove("active"));
     activeButton.classList.add("active");
+}
+           
+function handleTimeNavItems() {
+   const timeNavItems = document.getElementById("time-nav-options");
+
+   timeNavItems.addEventListener("click", (event) => {
+        clearMainContent();
+        setActiveNavItem(event.target);
+        switch(event.target.id) {
+            case "today-btn":
+                renderTasks(() => getTodayTasks(), "Today");
+                break;
+            case "week-btn":
+                renderTasks(() => getWeekTasks(), "This Week");
+                break;
+            case "month-btn":
+                renderTasks(() => getMonthTasks(), "This Month");
+                break;
+            case "anytime-btn":
+                renderTasks(() => getAllTasks(), "Anytime");
+                break; 
+        }
+    });
+}
+
+function handleProjectNavItems() {
+    const projectNavItems = document.getElementById("project-nav-options");
+    projectNavItems.addEventListener("click", (event) => {
+        if(!event.target.matches("button")) return;
+        clearMainContent();
+        setActiveNavItem(event.target);
+        renderTasks(() => getTasksByProject(event.target.id), event.target.id);
+    });
+}
+
+function handleNotesNav() {
+    const noteButton = document.getElementById("note-btn");
+    noteButton.addEventListener("click", () => renderNotes());
 }

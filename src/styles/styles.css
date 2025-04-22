@@ -116,18 +116,6 @@ button, dialog {
     transform: translateX(calc(3.6rem - 1.4rem - 0.33rem)); /* switch width - toggle circle width - extra padding*/
 }
 
-dialog {
-    font-size: 1.75rem;
-    background-color: var(--secondary-bg-color);
-    color: var(--text-color);
-    border-radius: 20px;
-}
-
-dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(3px);
-}
-
 #close-modal-btn, .note-delete-btn {
     background: url("../images/close.svg");
     width: 2rem;

@@ -1,0 +1,11 @@
+dialog {
+    font-size: 1.75rem;
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
+    border-radius: 20px;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+}

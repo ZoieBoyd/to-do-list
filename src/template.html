@@ -7,12 +7,17 @@
 </head>
 <body>
     <dialog>
-        <button id= "close-modal-btn"></button>
+        <button id= "close-modal-btn" class="icon"></button>
         <h2>Add new task</h2>
         <form action="submit">
             <p>
                 <label for="">Title</label>
                 <input type="text">
+            </p>
+            <p>
+                <label for="">Project</label>
+                <select name="project" id="project-dropdown">
+                </select>
             </p>
             <p>
                 <label for="">Priority</label>
@@ -34,20 +39,20 @@
             <img src="./images/profile-picture.svg" class="icon" alt="user profile image">
             <h4>Zoie Boyd</h4>
         </div>
-        <section>
-            <button class="nav-option"><img src="images/today-calendar.svg" class="icon">Today</button>
-            <button class="nav-option"><img src="images/week-calendar.svg" class="icon">This Week</button>
-            <button class="nav-option"><img src="images/month-calendar.svg" class="icon">This Month</button>
-            <button class="nav-option"><img src="images/group.svg" class="icon">Anytime</button>
+        <section id = "time-nav-options">
+            <button class="nav-option time-option" id="today-btn"><img src="images/today-calendar.svg" class="icon">Today</button>
+            <button class="nav-option time-option" id="week-btn"><img src="images/week-calendar.svg" class="icon">This Week</button>
+            <button class="nav-option time-option" id="month-btn"><img src="images/month-calendar.svg" class="icon">This Month</button>
+            <button class="nav-option time-option" id="anytime-btn"><img src="images/group.svg" class="icon">Anytime</button>
         </section>
-        <section id = "project-list">
+        <section id = "project-nav-options">
             <h5>Projects</h5>
         </section>
         <section>
             <button><img src="images/add-circle.svg">Create New Project</button>
         </section>
         <section>
-            <button id="note-nav-item" class="nav-option"><img src="images/notes.svg" class="icon">Notes</button>
+            <button id="note-btn" class="nav-option"><img src="images/notes.svg" class="icon">Notes</button>
         </section>
         <footer>
             <small>Website developed & designed by <a href="https://github.com/ZoieBoyd">Zoie Boyd</a></small>

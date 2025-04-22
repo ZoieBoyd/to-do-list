@@ -2,12 +2,16 @@ import { createTextElement } from "../modules/utils";
 import { clearMainContent } from "../modules/utils";
 import { getNotes } from "../modules/notes";
 import { deleteNote } from "../modules/notes";
+import { setActiveNavItem } from "./nav-dom";
 
 import add from "../images/add.svg";
+
+const noteNavButton = document.getElementById("note-btn");
 
 const mainContainer = document.getElementById("main-content");
 export function renderNotes() {
     const notes = getNotes();
+    setActiveNavItem(noteNavButton);
     clearMainContent();
     mainContainer.appendChild(createTextElement("h1", "Notes"));
     const notesContainer = document.createElement("div");
