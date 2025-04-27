@@ -1,6 +1,6 @@
 import { createTextElement, clearMainContent } from "../modules/utils";
 import { deleteTask, getAllTasks } from "../modules/tasks";
-import { renderAddTaskModal } from "./modal-dom";
+import { renderAddTaskModal, renderProjectDropdown } from "./modal-dom";
 import { format } from "date-fns"; 
 
 import add from "../images/add.svg";
@@ -54,7 +54,7 @@ function createAddTaskButton() {
     addIcon.classList.add("icon");
     addTaskButton.append(addIcon, document.createTextNode("Add task"));
     addTaskButton.addEventListener("click", () => {
-        renderAddTaskModal();
+        renderProjectDropdown();
         dialog.showModal()
     });
     return addTaskButton;

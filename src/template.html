@@ -11,27 +11,27 @@
         <h2>Add new task</h2>
         <form action="submit">
             <p>
-                <label for="">Title</label>
-                <input type="text">
+                <label for="title">Title</label>
+                <input name="title" type="text" id="title-input">
             </p>
             <p>
-                <label for="">Project</label>
+                <label for="project">Project</label>
                 <select name="project" id="project-dropdown">
                 </select>
             </p>
             <p>
-                <label for="">Priority</label>
-                <select name="priority" id="task-priority" placeholder="Select Priority">
+                <label for="priority">Priority</label>
+                <select name="priority" id="priority-dropdown">
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
             </p>
             <p>
-                <label for="">Due Date</label>
-                <input type="date">
+                <label for="due-date">Due Date</label>
+                <input name="due-date" type="date" id="due-date-input">
             </p>
-            <button id="create-task-btn">Create Task</button>
+            <button id="submit-task-btn" type="submit">Create Task</button>
         </form>
     </dialog>
     <nav id = "nav">
@@ -40,7 +40,7 @@
             <h4>Zoie Boyd</h4>
         </div>
         <section id = "time-nav-options">
-            <button class="nav-option time-option" id="today-btn"><img src="images/today-calendar.svg" class="icon">Today</button>
+            <button class="nav-option time-option active" id="today-btn"><img src="images/today-calendar.svg" class="icon">Today</button>
             <button class="nav-option time-option" id="week-btn"><img src="images/week-calendar.svg" class="icon">This Week</button>
             <button class="nav-option time-option" id="month-btn"><img src="images/month-calendar.svg" class="icon">This Month</button>
             <button class="nav-option time-option" id="anytime-btn"><img src="images/group.svg" class="icon">Anytime</button>
