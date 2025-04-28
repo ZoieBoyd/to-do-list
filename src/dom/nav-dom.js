@@ -39,8 +39,10 @@ function handleTimeNavItems() {
 
    timeNavItems.addEventListener("click", (event) => {
         clearMainContent();
-        setActiveNavItem(event.target);
-        switch(event.target.id) {
+        const target = event.target.closest("button");
+        if (!target) return; // Skip if click wasn't on a button
+        setActiveNavItem(target);
+        switch(target.id) {
             case "today-btn":
                 renderTasks(() => getTodayTasks(), "Today");
                 break;
@@ -60,14 +62,20 @@ function handleTimeNavItems() {
 function handleProjectNavItems() {
     const projectNavItems = document.getElementById("project-nav-options");
     projectNavItems.addEventListener("click", (event) => {
-        if(!event.target.matches("button")) return;
+        const target = event.target.closest("button");
+        if (!target) return; // Skip if click wasn't on a button
         clearMainContent();
-        setActiveNavItem(event.target);
-        renderTasks(() => getTasksByProject(event.target.id), event.target.id);
+        setActiveNavItem(target);
+        renderTasks(() => getTasksByProject(target.id), target.id);
     });
 }
 
 function handleNotesNav() {
     const noteButton = document.getElementById("note-btn");
     noteButton.addEventListener("click", () => renderNotes());
+}
+
+export function reloadCurrentPage() {
+    const currentPage = document.querySelector(".active");
+    currentPage.click();
 }

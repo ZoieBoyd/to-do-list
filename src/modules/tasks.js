@@ -17,10 +17,17 @@ export class Task {
 const tasks = [];
 
 export const createTask = (title, priorityLevel, dueDate, project) => 
-    tasks.push(new Task (title, priorityLevel, dueDate, project));
+    tasks.push(new Task(title, priorityLevel, dueDate, project));
 
 export const deleteTask = (task) =>
     tasks.splice(tasks.indexOf(task), 1);
+
+export const editTask = (task, title, priorityLevel, dueDate, project) => {
+    task.title = title;
+    task.priorityLevel = priorityLevel;
+    task.dueDate = dueDate;
+    task.project = project;
+};
 
 export const getAllTasks = () => tasks;
 

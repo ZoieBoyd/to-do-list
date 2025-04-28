@@ -8,7 +8,7 @@
 <body>
     <dialog>
         <button id= "close-modal-btn" class="icon"></button>
-        <h2>Add new task</h2>
+        <h2 id="modal-title">Add new task</h2>
         <form action="submit">
             <p>
                 <label for="title">Title</label>
@@ -45,8 +45,9 @@
             <button class="nav-option time-option" id="month-btn"><img src="images/month-calendar.svg" class="icon">This Month</button>
             <button class="nav-option time-option" id="anytime-btn"><img src="images/group.svg" class="icon">Anytime</button>
         </section>
-        <section id = "project-nav-options">
+        <section id = "project-nav-container">
             <h5>Projects</h5>
+            <div id= project-nav-options></div>
         </section>
         <section>
             <button><img src="images/add-circle.svg">Create New Project</button>

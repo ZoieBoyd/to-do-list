@@ -3,6 +3,7 @@ dialog {
     background-color: var(--secondary-bg-color);
     color: var(--text-color);
     border-radius: 20px;
+    width: 18vw;
 }
 
 dialog::backdrop {
