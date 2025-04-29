@@ -72,7 +72,11 @@ function handleProjectNavItems() {
 
 function handleNotesNav() {
     const noteButton = document.getElementById("note-btn");
-    noteButton.addEventListener("click", () => renderNotes());
+    noteButton.addEventListener("click", (event) => {
+        clearMainContent();
+        setActiveNavItem(document.getElementById("note-btn"));
+        renderNotes();
+    });
 }
 
 export function reloadCurrentPage() {

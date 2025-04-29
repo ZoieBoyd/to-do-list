@@ -1,18 +1,15 @@
 import { createTextElement } from "../modules/utils";
-import { clearMainContent } from "../modules/utils";
 import { getNotes } from "../modules/notes";
 import { deleteNote } from "../modules/notes";
-import { setActiveNavItem } from "./nav-dom";
+import { reloadCurrentPage } from "../dom/nav-dom";
 
 import add from "../images/add.svg";
 
-const noteNavButton = document.getElementById("note-btn");
+const dialog = document.getElementById("notes-modal");
 
 const mainContainer = document.getElementById("main-content");
 export function renderNotes() {
     const notes = getNotes();
-    setActiveNavItem(noteNavButton);
-    clearMainContent();
     mainContainer.appendChild(createTextElement("h1", "Notes"));
     const notesContainer = document.createElement("div");
     notesContainer.id = "notes-container";
@@ -35,7 +32,7 @@ function createDeleteButton(note) {
     deleteButton.classList.add("note-delete-btn", "icon");
     deleteButton.addEventListener("click", () => {
         deleteNote(note);
-        renderNotes();
+        reloadCurrentPage();
     });
     return deleteButton;
 }
@@ -47,5 +44,6 @@ function createAddNoteButton() {
     addIcon.src = add; 
     addIcon.classList.add("icon");
     addNoteButton.append(addIcon, document.createTextNode("Add note"));
+    addNoteButton.addEventListener("click", () => dialog.showModal());
     return addNoteButton;
 }

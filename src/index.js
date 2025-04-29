@@ -12,7 +12,9 @@ import "./styles/notes.css";
 import "./styles/modal.css";
 
 import { loadPageContent } from "./dom/dom";
-import { renderModal } from "./dom/modal-dom";
+import { renderTaskModal } from "./dom/tasks-modal-dom";
+import { renderAddNoteModal } from "./dom/notes-modal-dom";
 
 loadPageContent();
-renderModal();
+renderTaskModal();
+renderAddNoteModal();

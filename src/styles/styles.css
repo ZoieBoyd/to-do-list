@@ -116,7 +116,7 @@ button, dialog {
     transform: translateX(calc(3.6rem - 1.4rem - 0.33rem)); /* switch width - toggle circle width - extra padding*/
 }
 
-#close-modal-btn, .note-delete-btn {
+.close-modal-btn, .note-delete-btn {
     background: url("../images/close.svg");
     width: 2rem;
     height: 2rem;

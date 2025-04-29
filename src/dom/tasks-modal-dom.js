@@ -4,18 +4,23 @@ import { createTask, editTask } from "../modules/tasks";
 import { createTextElement } from "../modules/utils";
 import { reloadCurrentPage } from "./nav-dom";
 
-const dialog = document.querySelector("dialog");
-const form = document.querySelector("form");
+const dialog = document.getElementById("tasks-modal");
+const form = document.getElementById("task-form");
 const modalTitle = document.getElementById("modal-title");
 const submitButton = document.getElementById("submit-task-btn");
 let modalMode = "add";
 let taskToEdit;
 
-export function renderModal() {
-    const closeAddTaskButton = document.getElementById("close-modal-btn");
+const taskTitle = document.getElementById("task-title-input");
+const projectTitle = document.getElementById("project-dropdown");
+const priorityLevel = document.getElementById("priority-dropdown");
+const dueDate = document.getElementById("due-date-input");
+
+export function renderTaskModal() {
+    const closeAddTaskButton = document.getElementById("close-task-modal-btn");
     closeAddTaskButton.addEventListener("click", () =>  dialog.close());
     renderProjectDropdown();
-    handleSubmitButton();
+    handleTaskSubmitButton();
 }
 
 export function renderAddTaskModal() {
@@ -41,10 +46,6 @@ export function renderEditTaskModal(task) {
     modalTitle.textContent = "Edit Task";
     submitButton.textContent = "Edit Task";
 
-    const taskTitle = document.getElementById("title-input");
-    const projectTitle = document.getElementById("project-dropdown");
-    const priorityLevel = document.getElementById("priority-dropdown");
-    const dueDate = document.getElementById("due-date-input");
 
     /* Prefills the form with the task's current details */
     taskTitle.value = task.title;
@@ -53,10 +54,10 @@ export function renderEditTaskModal(task) {
     dueDate.value = format(task.dueDate, 'yyyy-MM-dd');
 }
 
-function handleSubmitButton() {
+function handleTaskSubmitButton() {
     submitButton.addEventListener("click", (event) => {
         event.preventDefault();
-        const formInputs = getFormInputs();
+        const formInputs = getTaskFormInputs();
         if(modalMode === "add") {
             createTask(...formInputs);
         } else if (modalMode === "edit") {
@@ -65,14 +66,8 @@ function handleSubmitButton() {
         reloadCurrentPage();
         dialog.close();
         form.reset();
-        
     })
 }
 
-function getFormInputs() { 
-    const taskTitle = document.getElementById("title-input").value;
-    const projectTitle = document.getElementById("project-dropdown").value;
-    const priorityLevel = document.getElementById("priority-dropdown").value;
-    const dueDate = new Date(document.getElementById("due-date-input").value);
-    return [taskTitle, priorityLevel, dueDate, projectTitle];
-}
+const getTaskFormInputs = () => 
+    [taskTitle.value, priorityLevel.value, dueDate.value, projectTitle.value];

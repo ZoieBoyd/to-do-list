@@ -1,12 +1,12 @@
 import { createTextElement, clearMainContent } from "../modules/utils";
 import { deleteTask } from "../modules/tasks";
-import { renderAddTaskModal, renderEditTaskModal, renderProjectDropdown } from "./modal-dom";
+import { renderAddTaskModal, renderEditTaskModal, renderProjectDropdown } from "./tasks-modal-dom";
 import { format } from "date-fns"; 
 
 import add from "../images/add.svg";
 import { reloadCurrentPage } from "./nav-dom";
 
-const dialog = document.querySelector("dialog");
+const dialog = document.getElementById("tasks-modal");
 const toDoContainer = document.getElementById("main-content");
 
 export function renderTasks(filter, title) {
