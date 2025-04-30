@@ -11,18 +11,21 @@
     --high-priority: #EA6365;
     --medium-priority: #EA9B63;
     --low-priority: #7AEA63;
+    --light-grey: rgba(35, 36, 42, 0.5);
 }
 
 :root.dark {
     --secondary-bg-color: #23242A;
     --bg-color: #1E1F23; 
     --text-color: #DAD6EE;
+    --secondary-text-color: white;
 }
 
 :root.light {
     --secondary-bg-color: #f2f2f2;
     --bg-color: #FFFFFF;
     --text-color: #1E1F23;
+    --secondary-text-color: black;
 }
 
 :root.light .icon {
@@ -40,8 +43,11 @@ body {
     grid-template-columns: 2fr 7fr 2fr;
     color: var(--text-color);
     background-color: var(--bg-color);
-    font-family: 'roboto', sans-serif;
     min-height: 100vh;
+}
+
+body, input, textarea {
+    font-family: 'roboto', sans-serif;
 }
 
 ::-webkit-scrollbar {

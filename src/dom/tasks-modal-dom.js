@@ -18,7 +18,10 @@ const dueDate = document.getElementById("due-date-input");
 
 export function renderTaskModal() {
     const closeAddTaskButton = document.getElementById("close-task-modal-btn");
-    closeAddTaskButton.addEventListener("click", () =>  dialog.close());
+    closeAddTaskButton.addEventListener("click", () =>  {
+        dialog.close()
+        form.reset();
+    });
     renderProjectDropdown();
     handleTaskSubmitButton();
 }
@@ -31,7 +34,7 @@ export function renderAddTaskModal() {
 
 export function renderProjectDropdown() {
     const projectDropdown = document.getElementById("project-dropdown");
-    projectDropdown.innerHTML = "";
+    projectDropdown.innerHTML = '<option value="" disabled selected hidden>Select Project</option>';
     const projects = getAllProjects();
     for (const project of projects) {
         const projectOption = createTextElement("option", project.title);

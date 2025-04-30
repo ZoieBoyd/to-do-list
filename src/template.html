@@ -7,21 +7,21 @@
 </head>
 <body>
     <dialog id="tasks-modal">
-        <button class= "close-modal-btn" id="close-task-modal-btn" class="icon"></button>
-        <h2 id="modal-title">Add new task</h2>
         <form action="submit" id="task-form">
+            <button class= "close-modal-btn icon" id="close-task-modal-btn" type="button"></button>
+            <h2 id="modal-title">Add new task</h2>
             <p>
                 <label for="task-title">Title</label>
-                <input name="task-title" type="text" id="task-title-input">
+                <input name="task-title" type="text" id="task-title-input" required>
             </p>
             <p>
                 <label for="project">Project</label>
-                <select name="project" id="project-dropdown">
-                </select>
+                <select name="project" id="project-dropdown" required></select>
             </p>
             <p>
                 <label for="priority">Priority</label>
-                <select name="priority" id="priority-dropdown">
+                <select name="priority" id="priority-dropdown" required>
+                    <option value="" disabled selected hidden>Select Priority</option>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
@@ -29,21 +29,21 @@
             </p>
             <p>
                 <label for="due-date">Due Date</label>
-                <input name="due-date" type="date" id="due-date-input">
+                <input name="due-date" type="date" id="due-date-input" required>
             </p>
             <button id="submit-task-btn" type="submit">Create Task</button>
         </form>
     </dialog>
     <dialog id = "notes-modal">
-        <button class= "close-modal-btn" id="close-note-modal-btn" class="icon"></button>
-        <h2>Add new note</h1>
-            <form action="submit" id="note-form">
+        <form action="submit" id="note-form">
+                <button class= "close-modal-btn icon" id="close-note-modal-btn" type="button"></button>
+                <h2>Add new note</h1>
                 <p>
                     <label for="note-title">Title</label>
-                    <input name="note-title" type="text" id="note-title-input">
+                    <input name="note-title" type="text" id="note-title-input" required>
                 </p>
                 <p>
-                    <textarea id="note-textarea" placeholder="Please type here..."></textarea>
+                    <textarea id="note-textarea" placeholder="Please type here..." rows="9" required></textarea>
                 </p>
                 <button id="submit-note-btn" type="submit">Create Note</button>
             </form>

@@ -11,7 +11,10 @@ const noteTextArea = document.getElementById("note-textarea");
 
 export function renderAddNoteModal() {
     const closeAddNoteButton = document.getElementById("close-note-modal-btn");
-    closeAddNoteButton.addEventListener("click", () => dialog.close());
+    closeAddNoteButton.addEventListener("click", () => {
+        dialog.close();
+        form.reset();
+    });
     handleNoteSubmitButton();
 }
 
