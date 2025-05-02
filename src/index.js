@@ -1,7 +1,7 @@
 /* TODO: 
-- Add functionality to Create New Project nav bar button
-- Add error prevention/handling for if new project is given same name as existing project
-- Add validation to the modal forms (i.e. must be complete to submit)
+- Allow users to delete projects
+- Allow users to rename projects
+- Allow users to edit notes
 - Add local storage to allow the user to reaccess their added tasks & projects
 - Refactor codebase to make it super ✨sexy✨ (follow SOLID design principles)
 */

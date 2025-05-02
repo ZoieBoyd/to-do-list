@@ -49,7 +49,6 @@ export function renderEditTaskModal(task) {
     modalTitle.textContent = "Edit Task";
     submitButton.textContent = "Confirm";
 
-
     /* Prefills the form with the task's current details */
     taskTitle.value = task.title;
     projectTitle.value = task.project;
@@ -61,6 +60,12 @@ function handleTaskSubmitButton() {
     submitButton.addEventListener("click", (event) => {
         event.preventDefault();
         const formInputs = getTaskFormInputs();
+        
+        if (formInputs.some(input => !input.trim())) {
+            alert("Please fill in all input fields.");
+            return;
+        }
+
         if(modalMode === "add") {
             createTask(...formInputs);
         } else if (modalMode === "edit") {
