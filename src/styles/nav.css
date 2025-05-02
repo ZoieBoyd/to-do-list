@@ -10,14 +10,17 @@ nav {
     display: flex;
     align-items: center;
     text-align: left;
-    font-size: 1.15rem;
     gap: 1rem;
-    padding: 0.35rem 1.25rem;
     width: 95%;
     background-color: transparent;
-    border-radius: 5px;
-    color: var(--text-color);
+    padding: 0.35rem 1.25rem;
 } 
+
+#nav * > button, #new-project-input, #new-project-input::placeholder {
+    color: var(--text-color);
+    font-size: 1.15rem;
+    border-radius: 5px;
+}
 
 #nav * > button:hover {
     background-color: var(--bg-color)
@@ -39,6 +42,31 @@ nav {
 
 #user-details > h4 {
     font-size: 1.5em;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#new-project-input {
+    background-color: var(--bg-color);
+    border: none;
+    padding: 0.35rem 0.45rem;
+}
+
+#new-project-input::placeholder {
+    opacity: 0.8;
+}
+
+#new-project-input:focus {
+    outline: 1px solid var(--text-color);
+}
+
+.new-project-field {
+    display: flex;
+    padding: 0rem 1.25rem;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 footer {

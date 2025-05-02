@@ -40,9 +40,10 @@ dialog label {
 
 dialog input, select {
     height: 2.5rem;
+    background-color: white;
 }
 
-input, select, textarea {
+dialog input, select, textarea {
     border: none;
     border-radius: 5px;
     font-size: 1rem;

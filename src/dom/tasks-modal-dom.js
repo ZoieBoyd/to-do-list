@@ -8,7 +8,7 @@ const dialog = document.getElementById("tasks-modal");
 const form = document.getElementById("task-form");
 const modalTitle = document.getElementById("modal-title");
 const submitButton = document.getElementById("submit-task-btn");
-let modalMode = "add";
+let modalMode;
 let taskToEdit;
 
 const taskTitle = document.getElementById("task-title-input");
@@ -29,7 +29,7 @@ export function renderTaskModal() {
 export function renderAddTaskModal() {
     modalMode = "add";
     modalTitle.textContent = "Add new task";
-    submitButton.textContent = "Create Task";
+    submitButton.textContent = "Create";
 }
 
 export function renderProjectDropdown() {
@@ -37,8 +37,8 @@ export function renderProjectDropdown() {
     projectDropdown.innerHTML = '<option value="" disabled selected hidden>Select Project</option>';
     const projects = getAllProjects();
     for (const project of projects) {
-        const projectOption = createTextElement("option", project.title);
-        projectOption.value = project.title;
+        const projectOption = createTextElement("option", project);
+        projectOption.value = project;
         projectDropdown.appendChild(projectOption);
     }
 }
@@ -47,7 +47,7 @@ export function renderEditTaskModal(task) {
     modalMode = "edit";
     taskToEdit = task;
     modalTitle.textContent = "Edit Task";
-    submitButton.textContent = "Edit Task";
+    submitButton.textContent = "Confirm";
 
 
     /* Prefills the form with the task's current details */

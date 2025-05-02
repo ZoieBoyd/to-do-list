@@ -45,7 +45,7 @@
                 <p>
                     <textarea id="note-textarea" placeholder="Please type here..." rows="9" required></textarea>
                 </p>
-                <button id="submit-note-btn" type="submit">Create Note</button>
+                <button id="submit-note-btn" type="submit">Create</button>
             </form>
     </dialog>
     <nav id = "nav">
@@ -64,7 +64,12 @@
             <div id= project-nav-options></div>
         </section>
         <section>
-            <button><img src="images/add-circle.svg">Create New Project</button>
+            <div class="hidden new-project-field">
+                <img src="images/folder.svg" class="icon">
+                <input type="text" placeholder="Project Name" id="new-project-input">    
+            </div>
+            
+            <button id="new-project-btn"><img src="images/add-circle.svg">Create New Project</button>
         </section>
         <section>
             <button id="note-btn" class="nav-option"><img src="images/notes.svg" class="icon">Notes</button>

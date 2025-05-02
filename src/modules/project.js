@@ -1,15 +1,13 @@
-class Project {
-    constructor(title, description) {
-        this.title = title;
-        this.description = description;
-    }
-}
-
 const projects = [
-    new Project("Default", " "),
-    new Project("Test", " ")
+    "Default",
+    "Test"
 ];
 
-const createProject = (title, description) => new Project(title, description);
+export const createProject = (title) => projects.push(title);
+
+//export const deleteProject = (title) => projects.splice(indexOf(title));
+
+export const isExistingProject = (title) => 
+    projects.some(project => project.trim().toLowerCase() === title.trim().toLowerCase());
 
 export const getAllProjects = () => projects;
