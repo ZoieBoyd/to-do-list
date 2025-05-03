@@ -36,7 +36,7 @@ export function renderProjectDropdown() {
     const projectDropdown = document.getElementById("project-dropdown");
     projectDropdown.innerHTML = '<option value="" disabled selected hidden>Select Project</option>';
     const projects = getAllProjects();
-    for (const project of projects) {
+    for(const project of projects) {
         const projectOption = createTextElement("option", project);
         projectOption.value = project;
         projectDropdown.appendChild(projectOption);
@@ -58,13 +58,9 @@ export function renderEditTaskModal(task) {
 
 function handleTaskSubmitButton() {
     submitButton.addEventListener("click", (event) => {
+        if(!form.checkValidity()) return;
         event.preventDefault();
         const formInputs = getTaskFormInputs();
-        
-        if (formInputs.some(input => !input.trim())) {
-            alert("Please fill in all input fields.");
-            return;
-        }
 
         if(modalMode === "add") {
             createTask(...formInputs);

@@ -20,6 +20,7 @@ export function renderAddNoteModal() {
 
 function handleNoteSubmitButton() {
     submitButton.addEventListener("click", (event) => {
+        if(!form.checkValidity()) return;
         event.preventDefault();
         const formInputs = getNoteFormInputs();
         createNewNote(...formInputs);
