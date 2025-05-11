@@ -13,9 +13,9 @@ export function renderTasks(filter, title) {
     clearMainContent();
     toDoContainer.appendChild(createTextElement("h1", title));
 
-    const filterFunc = filter();
+    const tasks = filter();
     
-    for(const task of filterFunc) {
+    for(const task of tasks) {
         const taskContainer = document.createElement("div");
         taskContainer.classList.add("task-container");
 

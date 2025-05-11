@@ -15,15 +15,15 @@
 }
 
 :root.dark {
-    --secondary-bg-color: #23242A;
     --bg-color: #1E1F23; 
+    --secondary-bg-color: #23242A;
     --text-color: #DAD6EE;
     --secondary-text-color: white;
 }
 
 :root.light {
-    --secondary-bg-color: #f2f2f2;
     --bg-color: #FFFFFF;
+    --secondary-bg-color: #f2f2f2;
     --text-color: #1E1F23;
     --secondary-text-color: black;
 }
@@ -126,8 +126,6 @@ button, dialog {
     background: url("../images/close.svg");
     width: 2rem;
     height: 2rem;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
 .add-element-btn {
@@ -140,4 +138,9 @@ button, dialog {
     background-color: transparent;
     color: var(--text-color);
     font-size: 1.25rem;   
+}
+
+.image-btn {
+    background-repeat: no-repeat;
+    background-size: contain;
 }

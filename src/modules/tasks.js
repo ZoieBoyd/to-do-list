@@ -43,7 +43,7 @@ export const getWeekTasks = () =>
 export const getMonthTasks = () => 
     tasks.filter(task => isThisMonth(task.dueDate));
 
-createTask("Attend doctor appointment", "low", new Date("2025-04-27"), "Default");
+createTask("Attend doctor appointment", "low", new Date("2025-05-08"), "Default");
 tasks[0].toggleComplete();
-createTask("Write report", "medium", new Date("2025-04-30"), "Default");
-createTask("Continue The Odin Project", "high", new Date("2025-04-22"), "Test");
+createTask("Write report", "medium", new Date("2025-05-30"), "Default");
+createTask("Continue The Odin Project", "high", new Date("2025-05-22"), "Test");

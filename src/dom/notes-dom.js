@@ -29,7 +29,7 @@ export function renderNotes() {
 
 function createDeleteButton(note) {
     const deleteButton = document.createElement("button");
-    deleteButton.classList.add("note-delete-btn", "icon");
+    deleteButton.classList.add("note-delete-btn", "image-btn", "icon");
     deleteButton.addEventListener("click", () => {
         deleteNote(note);
         reloadCurrentPage();

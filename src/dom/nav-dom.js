@@ -1,9 +1,9 @@
-import { createProject, getAllProjects, isExistingProject } from "../modules/project";
+import { createProject, deleteProject, getAllProjects, isExistingProject } from "../modules/project";
 import { getWeekTasks, getTodayTasks, getAllTasks, getMonthTasks, getTasksByProject} from "../modules/tasks";
 import folder  from "../images/folder.svg";
 import { renderNotes } from "./notes-dom";
 import { renderTasks } from "./tasks-dom";
-import { clearMainContent } from "../modules/utils";
+import { clearMainContent, createTextElement } from "../modules/utils";
 
 const createProjectField = document.querySelector(".new-project-field");
 const createProjectInput = document.getElementById("new-project-input");
@@ -23,13 +23,35 @@ export function loadProjectNavItems() {
 
     for(const project of projects) {
         const projectName = project;
+
         const projectButton = document.createElement("button");
         projectButton.id = projectName;
-        projectButton.classList.add("nav-option");
+        projectButton.classList.add("nav-option", "project-option");
+
         const folderIcon = document.createElement("img");
         folderIcon.src = folder;
         folderIcon.classList.add("icon");
-        projectButton.append(folderIcon, document.createTextNode(projectName));
+        const kebabButton = document.createElement("button");
+        const kebabOptions = document.createElement("div");
+
+        const renameProjectOption = createTextElement("button", "Rename");
+        const deleteProjectOption = createTextElement("button", "Delete");
+        renameProjectOption.addEventListener("click", (event) => console.log(`Rename ${event.target.closest(".project-option").id}`));
+        deleteProjectOption.addEventListener("click", (event) => handleDeleteProject(event));
+
+        kebabOptions.append(renameProjectOption, deleteProjectOption);
+        kebabOptions.classList.add("hidden", "kebab-options-container");
+
+        kebabButton.classList.add("kebab-btn", "icon", "image-btn");
+        kebabButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            kebabOptions.classList.toggle("hidden");
+        })
+
+        projectButton.addEventListener("mouseleave", () => kebabOptions.classList.add("hidden"));
+
+        projectButton.append(folderIcon, document.createTextNode(projectName), kebabButton);
+        kebabButton.append(kebabOptions);
         projectList.appendChild(projectButton);
     }
 }
@@ -116,9 +138,30 @@ function handleSubmitNewProject(event) {
     }
 }
 
+function handleRenameProject(event) {
+    const projectName = event.target.closest(".project-option").id;
+}
+
+function handleDeleteProject(event) {
+    const projectButton = event.target.closest(".project-option");
+    const projectName = projectButton.id;
+    deleteProject(projectName);
+    projectButton.remove();
+    
+    // Renders the "Today" page if the currently rendered page is the deleted project
+    if (event.target.closest(".project-option").classList.contains("active")) {
+        const todayBtn = document.getElementById("today-btn");
+        setActiveNavItem(todayBtn);
+        renderTasks(() => getTodayTasks(), "Today")
+    } else { // Reload the current page to prevent deleted project's tasks being present on time-based pages
+        reloadCurrentPage();
+    }
+}
+
 const clearProjectInput = () => createProjectInput.value = "";
 
 export function reloadCurrentPage() {
     const currentPage = document.querySelector(".active");
+    console.log(currentPage);
     currentPage.click();
 }
