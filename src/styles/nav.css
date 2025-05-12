@@ -7,7 +7,7 @@ nav {
     row-gap: 1.5rem;
 }
 
-.nav-option, #new-project-btn, #new-project-input {
+.nav-option, #new-project-btn, .project-input {
     display: flex;
     align-items: center;
     text-align: left;
@@ -19,7 +19,7 @@ nav {
 } 
 
 
-.nav-option, #new-project-btn, #new-project-input, #new-project-input::placeholder {
+.nav-option, #new-project-btn, .project-input, .project-input::placeholder {
     color: var(--text-color);
     font-size: 1.15rem;
     border-radius: 5px;
@@ -69,17 +69,17 @@ h5 {
     display: none !important;
 }
 
-#new-project-input {
+.project-input {
     background-color: var(--bg-color);
     border: none;
     padding: 0.35rem 0.45rem;
 }
 
-#new-project-input::placeholder {
+.project-input::placeholder {
     opacity: 0.8;
 }
 
-#new-project-input:focus {
+.project-input:focus {
     outline: 1px solid var(--text-color);
 }
 
@@ -105,6 +105,7 @@ h5 {
 .kebab-options-container {
     display: grid;
     position: absolute;
+    z-index: 1;
     left: 1rem;
     top: 0;
     background-color: var(--secondary-bg-color);

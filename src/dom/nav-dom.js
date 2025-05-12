@@ -1,4 +1,4 @@
-import { createProject, deleteProject, getAllProjects, isExistingProject } from "../modules/project";
+import { createProject, deleteProject, getAllProjects, isExistingProject, renameProject } from "../modules/project";
 import { getWeekTasks, getTodayTasks, getAllTasks, getMonthTasks, getTasksByProject} from "../modules/tasks";
 import folder  from "../images/folder.svg";
 import { renderNotes } from "./notes-dom";
@@ -36,7 +36,7 @@ export function loadProjectNavItems() {
 
         const renameProjectOption = createTextElement("button", "Rename");
         const deleteProjectOption = createTextElement("button", "Delete");
-        renameProjectOption.addEventListener("click", (event) => console.log(`Rename ${event.target.closest(".project-option").id}`));
+        renameProjectOption.addEventListener("click", (event) => handleRenameProject(event));
         deleteProjectOption.addEventListener("click", (event) => handleDeleteProject(event));
 
         kebabOptions.append(renameProjectOption, deleteProjectOption);
@@ -139,7 +139,50 @@ function handleSubmitNewProject(event) {
 }
 
 function handleRenameProject(event) {
-    const projectName = event.target.closest(".project-option").id;
+    const activeNavItemId = document.querySelector(".active").id;
+
+    const projectButton = event.target.closest(".project-option");
+    const oldProjectName = projectButton.id;
+
+    const renameField = createRenameInput(oldProjectName);
+    projectButton.replaceWith(renameField);
+
+    const renameInput = renameField.querySelector("input");
+    renameInput.focus();
+
+    renameInput.addEventListener("keypress", (event) => {
+        const newProjectName = renameInput.value.trim();
+
+        if(event.key === "Enter" &&  newProjectName !== "" && (!isExistingProject(newProjectName) || oldProjectName === newProjectName)) {
+            renameProject(oldProjectName, newProjectName);
+            loadProjectNavItems();
+
+            if (projectButton.classList.contains("active")) {
+                const renamedProjectButton = document.getElementById(newProjectName);
+                setActiveNavItem(renamedProjectButton);
+            } else {
+                setActiveNavItem(document.getElementById(activeNavItemId));
+            }
+            reloadCurrentPage(); 
+        }
+    });
+
+   renameInput.addEventListener("blur", () => renameField.replaceWith(projectButton));
+}
+
+function createRenameInput(projectName) {
+    const renameField = document.createElement("div");
+    renameField.classList.add("new-project-field");
+
+    const renameInput = document.createElement("input");
+    renameInput.classList.add("project-input");
+    renameInput.value = projectName;
+
+    const folderIcon = document.createElement("img");
+    folderIcon.src = folder;
+
+    renameField.append(folderIcon, renameInput);
+    return renameField;
 }
 
 function handleDeleteProject(event) {
@@ -162,6 +205,5 @@ const clearProjectInput = () => createProjectInput.value = "";
 
 export function reloadCurrentPage() {
     const currentPage = document.querySelector(".active");
-    console.log(currentPage);
     currentPage.click();
 }

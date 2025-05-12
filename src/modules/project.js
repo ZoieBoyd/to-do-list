@@ -16,8 +16,14 @@ export const deleteProject = (title) => {
     }
 };
 
-export const renameProject = (oldTitle, newTitle) => 
+export const renameProject = (oldTitle, newTitle) => {
     projects.splice(projects.indexOf(oldTitle), 1, newTitle);
+
+    const projectTasks = getTasksByProject(oldTitle);
+    for(const task of projectTasks) {
+        task.project = newTitle;
+    }
+}
 
 export const isExistingProject = (title) => 
     projects.some(project => project.trim().toLowerCase() === title.trim().toLowerCase());
