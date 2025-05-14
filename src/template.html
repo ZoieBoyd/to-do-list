@@ -6,6 +6,7 @@
     <title>To Do</title>
 </head>
 <body>
+
     <dialog id="tasks-modal">
         <form action="submit" id="task-form">
             <button class= "close-modal-btn icon" id="close-task-modal-btn" type="button"></button>
@@ -34,6 +35,7 @@
             <button id="submit-task-btn" type="submit">Create Task</button>
         </form>
     </dialog>
+
     <dialog id = "notes-modal">
         <form action="submit" id="note-form">
                 <button class= "close-modal-btn image-btn icon" id="close-note-modal-btn" type="button"></button>
@@ -48,6 +50,19 @@
                 <button id="submit-note-btn" type="submit">Create</button>
             </form>
     </dialog>
+
+    <dialog id = "delete-project-modal">
+        <div>
+            <img src="images/warning.svg" id="warning-icon">
+            <h3>Are you sure?</h3>
+            <p>All tasks within this project will be deleted.<br>This cannot be undone.</p>
+            <div>
+                <button id="cancel-delete-btn">Cancel</button>
+                <button id="confirm-delete-btn">Delete</button>
+            </div>
+        </div>
+    </dialog>
+
     <nav id = "nav">
         <div id="user-details">
             <img src="./images/profile-picture.svg" class="icon" alt="user profile image">
@@ -77,10 +92,12 @@
             <small>Website developed & designed by <a href="https://github.com/ZoieBoyd">Zoie Boyd</a></small>
         </footer>
     </nav>
+
     <main>
         <section id = "main-content">
         </section>
     </main>
+
     <section>
         <div id = "theme-toggle-container">
             <img src="images/sun.svg" alt="Light mode icon" class="icon">
@@ -88,5 +105,6 @@
             <img src="images/moon.svg" alt="Dark mode icon" class="icon">
         </div>
     </section>
+
 </body>
 </html>

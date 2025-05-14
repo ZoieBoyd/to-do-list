@@ -58,7 +58,7 @@ select option, select {
     color: black;
 }
   
-dialog button[type="submit"] {
+dialog button[type="submit"] , #delete-project-modal button {
     background-color: var(--highlight-color);
     color: var(--secondary-text-color);
     font-weight: 600;
@@ -71,8 +71,49 @@ dialog button[type="submit"] {
     margin-top: 1rem;
 }
 
+#cancel-delete-btn {
+    background-color: var(--light-grey) !important;
+}
+
 .close-modal-btn {
     align-self: flex-end;
     width: 2.65rem;
     height: 2.65rem;
+}
+
+#delete-project-modal {
+    min-width: 27%;
+}
+
+#delete-project-modal > div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 1.25rem;
+    padding-top: 0.7rem;
+}
+
+#warning-icon {
+    width: 4rem;
+}
+
+#delete-project-modal h3 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+#delete-project-modal p {
+    font-size: 1.5rem;
+    padding-inline: 0;
+}
+
+#delete-project-modal > div > div {
+    display: flex;
+    gap: 3.5rem;
+    font-size: 1.5rem;
+}
+
+#delete-project-modal button {
+    padding: 0.6rem 1.3rem;
 }

@@ -1,6 +1,4 @@
 /* TODO: 
-- Allow users to delete projects
-- Allow users to rename projects
 - Allow users to edit notes
 - Add local storage to allow the user to reaccess their added tasks & projects
 - Refactor codebase to make it super ✨sexy✨ (follow SOLID design principles)
@@ -15,7 +13,9 @@ import "./styles/modal.css";
 import { loadPageContent } from "./dom/dom";
 import { renderTaskModal } from "./dom/tasks-modal-dom";
 import { renderAddNoteModal } from "./dom/notes-modal-dom";
+import { handleProjectModalButtons } from "./dom/projects-modal-dom";
 
 loadPageContent();
 renderTaskModal();
 renderAddNoteModal();
+handleProjectModalButtons();

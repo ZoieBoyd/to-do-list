@@ -1,12 +1,14 @@
-import { createProject, deleteProject, getAllProjects, isExistingProject, renameProject } from "../modules/project";
+import { createProject, getAllProjects, isExistingProject, renameProject } from "../modules/project";
 import { getWeekTasks, getTodayTasks, getAllTasks, getMonthTasks, getTasksByProject} from "../modules/tasks";
 import folder  from "../images/folder.svg";
 import { renderNotes } from "./notes-dom";
 import { renderTasks } from "./tasks-dom";
+import { renderConfirmDeleteModal } from "./projects-modal-dom";
 import { clearMainContent, createTextElement } from "../modules/utils";
 
 const createProjectField = document.querySelector(".new-project-field");
 const createProjectInput = document.getElementById("new-project-input");
+let projectToDelete;
 
 export function loadNav() {
     loadProjectNavItems();
@@ -37,7 +39,7 @@ export function loadProjectNavItems() {
         const renameProjectOption = createTextElement("button", "Rename");
         const deleteProjectOption = createTextElement("button", "Delete");
         renameProjectOption.addEventListener("click", (event) => handleRenameProject(event));
-        deleteProjectOption.addEventListener("click", (event) => handleDeleteProject(event));
+        deleteProjectOption.addEventListener("click", (event) => renderConfirmDeleteModal(event));
 
         kebabOptions.append(renameProjectOption, deleteProjectOption);
         kebabOptions.classList.add("hidden", "kebab-options-container");
@@ -183,22 +185,6 @@ function createRenameInput(projectName) {
 
     renameField.append(folderIcon, renameInput);
     return renameField;
-}
-
-function handleDeleteProject(event) {
-    const projectButton = event.target.closest(".project-option");
-    const projectName = projectButton.id;
-    deleteProject(projectName);
-    projectButton.remove();
-    
-    // Renders the "Today" page if the currently rendered page is the deleted project
-    if (event.target.closest(".project-option").classList.contains("active")) {
-        const todayBtn = document.getElementById("today-btn");
-        setActiveNavItem(todayBtn);
-        renderTasks(() => getTodayTasks(), "Today")
-    } else { // Reload the current page to prevent deleted project's tasks being present on time-based pages
-        reloadCurrentPage();
-    }
 }
 
 const clearProjectInput = () => createProjectInput.value = "";

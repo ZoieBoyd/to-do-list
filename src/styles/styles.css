@@ -11,7 +11,7 @@
     --high-priority: #EA6365;
     --medium-priority: #EA9B63;
     --low-priority: #7AEA63;
-    --light-grey: rgba(35, 36, 42, 0.5);
+    --light-grey: #7E7D83;
 }
 
 :root.dark {
