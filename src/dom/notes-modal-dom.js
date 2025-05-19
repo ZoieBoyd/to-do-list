@@ -1,4 +1,4 @@
-import { createNewNote } from "../modules/notes";
+import { createNote } from "../modules/notes";
 import { reloadCurrentPage } from "./nav-dom";
 
 const dialog = document.getElementById("notes-modal");
@@ -9,26 +9,26 @@ const submitButton = document.getElementById("submit-note-btn");
 const noteTitle = document.getElementById("note-title-input");
 const noteTextArea = document.getElementById("note-textarea");
 
-export function renderAddNoteModal() {
+export const renderAddNoteModal = () => {
     const closeAddNoteButton = document.getElementById("close-note-modal-btn");
     closeAddNoteButton.addEventListener("click", () => {
         dialog.close();
         form.reset();
     });
     handleNoteSubmitButton();
-}
+};
 
-function handleNoteSubmitButton() {
+const handleNoteSubmitButton = () => {
     submitButton.addEventListener("click", (event) => {
         if(!form.checkValidity()) return;
         event.preventDefault();
         const formInputs = getNoteFormInputs();
-        createNewNote(...formInputs);
+        createNote(...formInputs);
         dialog.close();
         form.reset();
         reloadCurrentPage();
     });
-}
+};
 
 const getNoteFormInputs = () =>
     [noteTitle.value, noteTextArea.value];

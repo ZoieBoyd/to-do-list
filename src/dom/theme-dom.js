@@ -1,7 +1,16 @@
 const root = document.documentElement;
-root.className = "dark"; // Dark Mode is the page's default setting (because it's superior)
+const themeToggle = document.getElementById("theme-switch");
 
-export function setTheme() {
+export const setTheme = () => {
     const currentTheme = root.className === "dark" ? "light" : "dark";
     root.className = currentTheme;
-}
+    saveTheme(currentTheme);
+};
+
+export const saveTheme = (currentTheme) =>
+    localStorage.setItem("theme", JSON.stringify(currentTheme));
+
+export const loadTheme = () => {
+    root.className = JSON.parse(localStorage.getItem("theme"));
+    themeToggle.checked = root.className === "dark";
+};

@@ -11,22 +11,28 @@ export class Task {
 
     toggleComplete() {
         this.isComplete = !this.isComplete;
+        saveTasks();
     }
 }
 
-const tasks = [];
+let tasks = [];
 
-export const createTask = (title, priorityLevel, dueDate, project) => 
+export const createTask = (title, priorityLevel, dueDate, project) => {
     tasks.push(new Task(title, priorityLevel, dueDate, project));
+    saveTasks();
+} 
 
-export const deleteTask = (task) =>
+export const deleteTask = (task) => {
     tasks.splice(tasks.indexOf(task), 1);
+    saveTasks();
+}
 
 export const editTask = (task, title, priorityLevel, dueDate, project) => {
     task.title = title;
     task.priorityLevel = priorityLevel;
     task.dueDate = dueDate;
     task.project = project;
+    saveTasks();
 };
 
 export const getAllTasks = () => tasks;
@@ -43,7 +49,15 @@ export const getWeekTasks = () =>
 export const getMonthTasks = () => 
     tasks.filter(task => isThisMonth(task.dueDate));
 
-createTask("Attend doctor appointment", "low", new Date("2025-05-08"), "Default");
-tasks[0].toggleComplete();
-createTask("Write report", "medium", new Date("2025-05-30"), "Default");
-createTask("Continue The Odin Project", "high", new Date("2025-05-22"), "Test");
+export const saveTasks = () => 
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+export const loadTasks = () => {
+    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks = [];
+    storedTasks.forEach(task => {
+        const taskObj = new Task(task.title, task.priorityLevel, new Date(task.dueDate), task.project);
+        taskObj.isComplete = task.isComplete;
+        tasks.push(taskObj);
+    });
+};

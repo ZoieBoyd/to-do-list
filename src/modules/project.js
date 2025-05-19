@@ -1,19 +1,22 @@
-import { deleteTask, getTasksByProject } from "./tasks";
+import { deleteTask, getTasksByProject, saveTasks } from "./tasks";
 
-const projects = [
-    "Default",
-    "Test"
-];
+let projects = [];
 
-export const createProject = (title) => projects.push(title);
+export const createProject = (title) => {
+    projects.push(title);
+    saveProjects();
+}
 
 export const deleteProject = (title) => {
     projects.splice(projects.indexOf(title), 1)
-
+    
     const projectTasks = getTasksByProject(title);
     for(const task of projectTasks) {
         deleteTask(task);
     }
+
+    saveProjects();
+    saveTasks();
 };
 
 export const renameProject = (oldTitle, newTitle) => {
@@ -23,9 +26,18 @@ export const renameProject = (oldTitle, newTitle) => {
     for(const task of projectTasks) {
         task.project = newTitle;
     }
+
+    saveProjects();
+    saveTasks();
 }
 
 export const isExistingProject = (title) => 
     projects.some(project => project.trim().toLowerCase() === title.trim().toLowerCase());
 
 export const getAllProjects = () => projects;
+
+export const saveProjects = () =>
+    localStorage.setItem("projects", JSON.stringify(projects));
+
+export const loadProjects = () => 
+    projects = JSON.parse(localStorage.getItem("projects")) || [];
