@@ -4,6 +4,7 @@ nav {
     background-color: var(--secondary-bg-color);
     padding: 1rem 1.4rem;
     width: 16vw;
+    min-height: 100%;
     row-gap: 1.5rem;
 }
 
@@ -131,4 +132,78 @@ h5 {
 
 footer {
    margin-top: auto;
+}
+
+#hamburger-menu {
+    --x-width: calc(var(--hamburger-height) * 1.41421356237); /* Multiplied by sq rt of 2 */
+    display: none;
+}
+
+#hamburger-menu::before, #hamburger-menu:after, #hamburger-menu input {
+    content: "";
+    width: 36px;
+    height: var(--hamburger-bar-height);
+    background-color: var(--text-color);
+    border-radius: 50px;
+    transition: opacity var(--anim-timing), width var(--anim-timing), 
+    rotate var(--anim-timing), translate var(--anim-timing), background-color var(--anim-timing);
+    transform-origin: left center;
+}
+
+#hamburger-menu input {
+    appearance: none;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+}
+
+#hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+}
+
+#hamburger-menu:has(input:checked)::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--hamburger-bar-height) / -2);
+}
+
+#hamburger-menu:has(input:checked)::after {
+    rotate: -45deg;
+    translate: 0 calc(var(--hamburger-bar-height) / 2);
+}
+
+@media (max-width: 600px) {
+    #nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 80vw;
+        padding-top: 2.5rem;
+        transform: translateX(-100%);
+        transition: transform var(--anim-timing);
+        z-index: 2;
+    
+    }
+
+    #hamburger-menu {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        grid-area: hamburgerMenu;
+        gap: var(--hamburger-bar-gap);
+        width: max-content;
+        height: max-content;
+        margin-left: 1rem;
+        margin-top: 1rem; 
+        z-index: 3;
+        cursor: pointer;
+        align-self: center;
+    }
+
+    #hamburger-menu:has(input:checked) ~ nav {
+        display: flex;
+        position: absolute;
+        transform: translateX(0);
+      }
 }

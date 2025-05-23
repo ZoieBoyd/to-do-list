@@ -11,9 +11,24 @@
     break-inside: avoid;
     margin-bottom: 1.5rem;
     padding: 1rem 2.5rem;
-    background-color: var(--secondary-bg-color)
+    background-color: var(--secondary-bg-color);
+    word-break: break-all;
+    padding-bottom: 2rem;
 }
 
 .note-delete-btn {
     align-self: flex-end;
+}
+
+@media (max-width: 600px){
+    #notes-container {
+        display: flex;
+        margin-inline: 2.5rem;
+        flex-direction: column;
+    }
+
+    .note {
+        padding: 1rem;
+        padding-bottom: 2rem;
+    }
 }

@@ -68,3 +68,64 @@
 .edit-btn {
     background: url("../images/edit.svg");
 }
+
+@media (max-width: 600px) {
+    .task-container {
+        grid-template-columns: 0.3fr 1.7fr 0.7fr repeat(2, 0.1fr);
+        width: 90%;
+        gap: 0.2rem;
+        margin: 0;
+        padding-inline: 0.7rem;
+        font-size: 0.7em;
+        border-left: 0.8rem solid;
+    }
+
+    .high-priority {
+        border-color: var(--high-priority);
+    }
+    
+    .medium-priority {
+        border-color: var(--medium-priority);
+    }
+    
+    .low-priority {
+        border-color: var(--low-priority);
+    }
+
+    h1 {
+        padding-left: 1.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .add-element-btn {
+        width: 85%;
+    }
+
+    .task-container button {
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+
+    #task-title {
+        margin-left: 0.5rem;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        line-clamp: 2;
+        word-break: break-word;
+        overflow: hidden;
+    }
+
+    #task-date {
+        font-size: 1.2em;
+        text-wrap: nowrap;
+        margin-right: 0.7rem;
+    }
+
+    .complete-checkbox {
+        width: 1.4rem;
+        height: 1.4rem;
+        border: 2px solid var(--highlight-color); 
+    }
+}

@@ -13,7 +13,7 @@
             <h2 id="modal-title">Add new task</h2>
             <p>
                 <label for="task-title">Title</label>
-                <input name="task-title" type="text" id="task-title-input" required>
+                <input name="task-title" type="text" id="task-title-input" maxlength="33" required>
             </p>
             <p>
                 <label for="project">Project</label>
@@ -42,7 +42,7 @@
                 <h2>Add new note</h1>
                 <p>
                     <label for="note-title">Title</label>
-                    <input name="note-title" type="text" id="note-title-input" required>
+                    <input name="note-title" type="text" id="note-title-input" maxlength="15" required>
                 </p>
                 <p>
                     <textarea id="note-textarea" placeholder="Please type here..." rows="9" required></textarea>
@@ -63,6 +63,9 @@
         </div>
     </dialog>
 
+    <label id="hamburger-menu">
+        <input type="checkbox">
+    </label>
     <nav id = "nav">
         <div id="user-details">
             <img src="./images/profile-picture.svg" class="icon" alt="user profile image">
@@ -79,7 +82,7 @@
             <div id= project-nav-options></div>
             <div class="hidden new-project-field">
                 <img src="images/folder.svg" class="icon">
-                <input type="text" placeholder="Project Name" class="project-input" id="new-project-input">    
+                <input type="text" placeholder="Project Name" class="project-input" id="new-project-input" maxlength="15">    
             </div> 
         </section>
         <section>
