@@ -38,8 +38,14 @@ export function loadProjectNavItems() {
 
         const renameProjectOption = createTextElement("button", "Rename");
         const deleteProjectOption = createTextElement("button", "Delete");
-        renameProjectOption.addEventListener("click", (event) => handleRenameProject(event));
-        deleteProjectOption.addEventListener("click", (event) => renderConfirmDeleteModal(event));
+        renameProjectOption.addEventListener("click", (event) => {
+            event.stopPropagation();
+            handleRenameProject(projectButton)
+        });
+        deleteProjectOption.addEventListener("click", (event) => {
+            event.stopPropagation();
+            renderConfirmDeleteModal(projectButton)
+        });
 
         kebabOptions.append(renameProjectOption, deleteProjectOption);
         kebabOptions.classList.add("hidden", "kebab-options-container");
@@ -53,7 +59,7 @@ export function loadProjectNavItems() {
         projectButton.addEventListener("mouseleave", () => kebabOptions.classList.add("hidden"));
 
         projectButton.append(folderIcon, document.createTextNode(projectName), kebabButton);
-        kebabButton.append(kebabOptions);
+        projectButton.append(kebabOptions);
         projectList.appendChild(projectButton);
     }
 }
@@ -140,10 +146,8 @@ function handleSubmitNewProject(event) {
     }
 }
 
-function handleRenameProject(event) {
+function handleRenameProject(projectButton) {
     const activeNavItemId = document.querySelector(".active").id;
-
-    const projectButton = event.target.closest(".project-option");
     const oldProjectName = projectButton.id;
 
     const renameField = createRenameInput(oldProjectName);
@@ -179,8 +183,10 @@ function createRenameInput(projectName) {
     const renameInput = document.createElement("input");
     renameInput.classList.add("project-input");
     renameInput.value = projectName;
+    renameInput.maxLength = "15";
 
     const folderIcon = document.createElement("img");
+    folderIcon.classList.add("icon");
     folderIcon.src = folder;
 
     renameField.append(folderIcon, renameInput);
@@ -191,5 +197,10 @@ const clearProjectInput = () => createProjectInput.value = "";
 
 export function reloadCurrentPage() {
     const currentPage = document.querySelector(".active");
-    currentPage.click();
+    if(currentPage) {
+        currentPage.click();
+    } else {
+        const todayButton = document.getElementById("today-btn")
+        todayButton.click();
+    }
 }

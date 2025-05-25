@@ -1,14 +1,13 @@
 import { deleteProject } from "../modules/project";
-import { setActiveNavItem, reloadCurrentPage } from "./nav-dom";
-import { renderTasks } from "./tasks-dom";
-import { getTodayTasks } from "../modules/tasks";
+import { reloadCurrentPage } from "./nav-dom";
 
 let projectToDelete;
 const confirmDeleteModal = document.getElementById("delete-project-modal");
 
-export function renderConfirmDeleteModal(event) {
+export function renderConfirmDeleteModal(projectButton) {
     confirmDeleteModal.showModal();
-    projectToDelete = event;
+    console.log();
+    projectToDelete = projectButton;
 }
 
 export function handleProjectModalButtons() {
@@ -22,18 +21,9 @@ export function handleProjectModalButtons() {
     });
 }
 
-function handleDeleteProject(event) {
-    const projectButton = event.target.closest(".project-option");
+function handleDeleteProject(projectButton) {
     const projectName = projectButton.id;
     deleteProject(projectName);
     projectButton.remove();
-    
-    // Renders the "Today" page if the currently rendered page is the deleted project
-    if (event.target.closest(".project-option").classList.contains("active")) {
-        const todayBtn = document.getElementById("today-btn");
-        setActiveNavItem(todayBtn);
-        renderTasks(() => getTodayTasks(), "Today")
-    } else { // Reload the current page to prevent deleted project's tasks being present on time-based pages
-        reloadCurrentPage();
-    }
+    reloadCurrentPage();
 }

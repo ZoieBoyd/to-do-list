@@ -106,9 +106,9 @@ h5 {
 .kebab-options-container {
     display: grid;
     position: absolute;
-    z-index: 1;
-    left: 1rem;
-    top: 0;
+    z-index: 3;
+    right: -5.5rem;
+    top: 0.4rem;
     background-color: var(--secondary-bg-color);
     border: 0.1rem solid #2b2a2a;
     padding: 0.25rem 0.25rem;
