@@ -50,13 +50,18 @@ export function loadProjectNavItems() {
         kebabOptions.append(renameProjectOption, deleteProjectOption);
         kebabOptions.classList.add("hidden", "kebab-options-container");
 
-        kebabButton.classList.add("kebab-btn", "icon", "image-btn");
+        kebabButton.classList.add("kebab-btn", "icon", "image-btn", "hidden");
         kebabButton.addEventListener("click", (event) => {
             event.stopPropagation();
             kebabOptions.classList.toggle("hidden");
         })
 
-        projectButton.addEventListener("mouseleave", () => kebabOptions.classList.add("hidden"));
+        projectButton.addEventListener("mouseenter", () => kebabButton.classList.remove("hidden"));
+
+        projectButton.addEventListener("mouseleave", () => {
+            kebabButton.classList.add("hidden");
+            kebabOptions.classList.add("hidden");
+        });
 
         projectButton.append(folderIcon, document.createTextNode(projectName), kebabButton);
         projectButton.append(kebabOptions);

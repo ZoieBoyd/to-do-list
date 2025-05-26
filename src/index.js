@@ -16,7 +16,7 @@ import { handleProjectModalButtons } from "./dom/projects-modal-dom";
 import { createProject, loadProjects, saveProjects } from "./modules/project";
 import { createTask, loadTasks, saveTasks } from "./modules/tasks";
 import { loadTheme, saveTheme } from "./dom/theme-dom";
-import { createNewNote, createNote, loadNotes, saveNotes } from "./modules/notes";
+import { createNote, loadNotes, saveNotes } from "./modules/notes";
 
 if(!localStorage.getItem("hasVisited")) { // Behaviour for user's first time load
     setupDefaultAppData();

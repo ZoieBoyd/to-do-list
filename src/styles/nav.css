@@ -34,12 +34,6 @@ nav {
     position: relative;
 }
 
-.nav-option:hover {
-    .kebab-btn {
-        display: block;
-    }
-}
-
 #nav * > button.active > img {
     filter: invert(45%) sepia(83%) saturate(1845%) hue-rotate(228deg) brightness(80%) contrast(98%);
 }
@@ -92,7 +86,6 @@ h5 {
 }
 
 .kebab-btn {
-    display: none;
     background: url("../images/dots.svg") center;
     background-repeat: no-repeat;
     background-size: contain;

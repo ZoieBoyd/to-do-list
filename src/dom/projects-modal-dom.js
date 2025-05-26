@@ -6,7 +6,6 @@ const confirmDeleteModal = document.getElementById("delete-project-modal");
 
 export function renderConfirmDeleteModal(projectButton) {
     confirmDeleteModal.showModal();
-    console.log();
     projectToDelete = projectButton;
 }
 
