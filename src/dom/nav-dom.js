@@ -1,14 +1,14 @@
-import { createProject, getAllProjects, isExistingProject, renameProject } from "../modules/project";
+import { createProject, getAllProjects, isExistingProject, isValidProjectName, renameProject } from "../modules/project";
+import { renderConfirmDeleteModal } from "./modals/projects-modal-dom";
 import { getWeekTasks, getTodayTasks, getAllTasks, getMonthTasks, getTasksByProject} from "../modules/tasks";
-import folder  from "../images/folder.svg";
-import { renderNotes } from "./notes-dom";
 import { renderTasks } from "./tasks-dom";
-import { renderConfirmDeleteModal } from "./projects-modal-dom";
+import { renderNotes } from "./notes-dom";
 import { clearMainContent, createTextElement } from "../modules/utils";
+
+import folder  from "../images/folder.svg";
 
 const createProjectField = document.querySelector(".new-project-field");
 const createProjectInput = document.getElementById("new-project-input");
-let projectToDelete;
 
 export function loadNav() {
     loadProjectNavItems();
@@ -24,51 +24,77 @@ export function loadProjectNavItems() {
     const projects = getAllProjects();
 
     for(const project of projects) {
-        const projectName = project;
-
-        const projectButton = document.createElement("button");
-        projectButton.id = projectName;
-        projectButton.classList.add("nav-option", "project-option");
-
-        const folderIcon = document.createElement("img");
-        folderIcon.src = folder;
-        folderIcon.classList.add("icon");
-        const kebabButton = document.createElement("button");
-        const kebabOptions = document.createElement("div");
-
-        const renameProjectOption = createTextElement("button", "Rename");
-        const deleteProjectOption = createTextElement("button", "Delete");
-        renameProjectOption.addEventListener("click", (event) => {
-            event.stopPropagation();
-            handleRenameProject(projectButton)
-        });
-        deleteProjectOption.addEventListener("click", (event) => {
-            event.stopPropagation();
-            renderConfirmDeleteModal(projectButton)
-        });
-
-        kebabOptions.append(renameProjectOption, deleteProjectOption);
-        kebabOptions.classList.add("hidden", "kebab-options-container");
-
-        kebabButton.classList.add("kebab-btn", "icon", "image-btn", "hidden");
-        kebabButton.addEventListener("click", (event) => {
-            event.stopPropagation();
-            kebabOptions.classList.toggle("hidden");
-        })
+        const projectButton = createProjectButton(project);
+        const {kebabButton, kebabMenu} = createKebabButton(projectButton);
 
         projectButton.addEventListener("mouseenter", () => kebabButton.classList.remove("hidden"));
-
         projectButton.addEventListener("mouseleave", () => {
             kebabButton.classList.add("hidden");
-            kebabOptions.classList.add("hidden");
+            kebabMenu.classList.add("hidden");
         });
 
-        projectButton.append(folderIcon, document.createTextNode(projectName), kebabButton);
-        projectButton.append(kebabOptions);
+        projectButton.append(kebabButton, kebabMenu);
         projectList.appendChild(projectButton);
     }
 }
+
+function createProjectButton(name) {
+    const button = document.createElement("button");
+    button.id = name;
+    button.classList.add("nav-option", "project-option");
+
+    const folderIcon = document.createElement("img");
+    folderIcon.src = folder;
+    folderIcon.classList.add("icon");
+
+    button.append(folderIcon, document.createTextNode(name));
+
+    return button;
+}
+
+function createKebabButton(projectButton) {
+    const button = document.createElement("button");
+    button.classList.add("kebab-btn", "icon", "image-btn", "hidden");
     
+    const menu = createKebabMenu(projectButton);
+
+    button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        menu.classList.toggle("hidden");
+    });
+
+    return {kebabButton: button, kebabMenu: menu};
+}
+
+function createKebabMenu(projectButton) {
+    const menuContainer = document.createElement("div");
+    menuContainer.classList.add("kebab-options-container", "hidden");
+
+    const renameButton = createTextElement("button", "Rename");
+    const deleteButton = createTextElement("button", "Delete");
+    renameButton.dataset.action = "rename";
+    deleteButton.dataset.action = "delete";
+    menuContainer.append(renameButton, deleteButton);
+
+    menuContainer.addEventListener("click", (event) => 
+        handleKebabMenuClick(event, projectButton));
+
+    return menuContainer;
+}
+
+function handleKebabMenuClick(event, projectButton) {
+    event.stopPropagation();
+        
+    switch(event.target.dataset.action) {
+        case "rename":
+            handleRenameProject(projectButton);
+            break;
+        case "delete":
+            renderConfirmDeleteModal(projectButton);
+            break; 
+    }
+}
+
 export function setActiveNavItem(activeButton) {
     const navButtons = document.querySelectorAll(".nav-option");
     navButtons.forEach(btn => btn.classList.remove("active"));
@@ -137,37 +163,40 @@ function showNewProjectInput() {
 }
 
 function handleSubmitNewProject(event) {
-    const projectName = createProjectInput.value;
-    if(event.key === "Enter" && projectName && !isExistingProject(projectName)){
+    const projectName = createProjectInput.value.trim();
+
+    if(event.key !== "Enter") return;
+    if(isValidProjectName(projectName)) {
         createProject(projectName);
         createProjectField.classList.add("hidden");
         clearProjectInput();
         loadProjectNavItems();
         setActiveNavItem(document.getElementById(projectName));
         renderTasks(() => getTasksByProject(projectName), projectName);
-    } else if (event.key ==="Enter" && isExistingProject(projectName)) {
-        alert("Please choose a unique project name.")
-        clearProjectInput();
+    } else {
+        handleInvalidProjectName();
     }
 }
+
 
 function handleRenameProject(projectButton) {
     const activeNavItemId = document.querySelector(".active").id;
     const oldProjectName = projectButton.id;
-
+    
     const renameField = createRenameInput(oldProjectName);
     projectButton.replaceWith(renameField);
-
+    
     const renameInput = renameField.querySelector("input");
     renameInput.focus();
-
+    
     renameInput.addEventListener("keypress", (event) => {
         const newProjectName = renameInput.value.trim();
-
-        if(event.key === "Enter" &&  newProjectName !== "" && (!isExistingProject(newProjectName) || oldProjectName === newProjectName)) {
+        if(event.key !== "Enter") return;
+        
+        if(isValidProjectName(newProjectName) || oldProjectName === newProjectName) {
             renameProject(oldProjectName, newProjectName);
             loadProjectNavItems();
-
+            
             if (projectButton.classList.contains("active")) {
                 const renamedProjectButton = document.getElementById(newProjectName);
                 setActiveNavItem(renamedProjectButton);
@@ -175,10 +204,17 @@ function handleRenameProject(projectButton) {
                 setActiveNavItem(document.getElementById(activeNavItemId));
             }
             reloadCurrentPage(); 
+        } else {
+            handleInvalidProjectName();
         }
     });
+    
+    renameInput.addEventListener("blur", () => renameField.replaceWith(projectButton));
+}
 
-   renameInput.addEventListener("blur", () => renameField.replaceWith(projectButton));
+function handleInvalidProjectName() {
+    alert("Please choose a unique and valid project name.")
+    clearProjectInput();
 }
 
 function createRenameInput(projectName) {

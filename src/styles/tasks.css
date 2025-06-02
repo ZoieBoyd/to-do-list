@@ -25,24 +25,47 @@
     border-color: var(--low-priority);
 }
 
-.complete-checkbox {
-    appearance: none;
-    -webkit-appearance: none;
-    background-color: none;
-    border: 3px solid var(--highlight-color);
-    border-radius: 50%;
-    width: 2.2rem;
+.complete-container {
+    position: relative;
     height: 2.2rem;
 }
 
-.complete-checkbox:hover {
-    background-color: var(--highlight-color);
+.complete-container label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+    border: 3px solid var(--highlight-color);
+    border-radius: 50%;
+    cursor: pointer;
+    height: 2.2rem;
+    width: 2.2rem;
 }
 
-.complete-checkbox:checked {
-    appearance: auto;
-    clip-path: circle(50%);
-    accent-color: var(--highlight-color);
+.complete-container label:after {
+    border: 4px solid white;
+    border-top: none;
+    border-right: none;
+    content: "";
+    opacity: 0;
+    position: absolute;
+    left: 0.22rem;
+    top: 6px;
+    transform: rotate(-45deg);
+    height: 9px;
+    width: 18px;
+}
+
+.complete-container input {
+  visibility: hidden;
+}
+
+.complete-container input:checked + label {
+  background-color: var(--highlight-color);
+}
+
+.complete-container input:checked + label:after {
+  opacity: 1;
 }
 
 #task-title {
@@ -123,10 +146,23 @@
         margin-right: 0.7rem;
     }
 
-    .complete-checkbox {
-        width: 1.4rem;
-        height: 1.4rem;
+    .complete-container label, .complete-container {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    
+    .complete-container label {
         border: 2px solid var(--highlight-color); 
+    }
+
+    .complete-container label:after {
+        border: 3px solid white;
+        border-top: none;
+        border-right: none;
+        width: 12px;
+        height: 6px;
+        left: 0.18rem;
+        top: 4px;
     }
 
     .add-element-btn {

@@ -1,3 +1,4 @@
+import { storage } from "./storage";
 import { deleteTask, getTasksByProject, saveTasks } from "./tasks";
 
 let projects = [];
@@ -34,10 +35,10 @@ export const renameProject = (oldTitle, newTitle) => {
 export const isExistingProject = (title) => 
     projects.some(project => project.trim().toLowerCase() === title.trim().toLowerCase());
 
+export const isValidProjectName = (projectName) => projectName && !isExistingProject(projectName);
+
 export const getAllProjects = () => projects;
 
-export const saveProjects = () =>
-    localStorage.setItem("projects", JSON.stringify(projects));
+export const saveProjects = () => storage.save("projects", projects);
 
-export const loadProjects = () => 
-    projects = JSON.parse(localStorage.getItem("projects")) || [];
+export const loadProjects = () => projects = storage.load("projects") || [];

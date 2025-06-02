@@ -1,4 +1,5 @@
 import { isToday, isThisWeek, isThisMonth } from "date-fns";
+import { storage } from "./storage";
 
 export class Task {
     constructor(title, priorityLevel, dueDate, project) {
@@ -11,7 +12,6 @@ export class Task {
 
     toggleComplete() {
         this.isComplete = !this.isComplete;
-        saveTasks();
     }
 }
 
@@ -49,11 +49,10 @@ export const getWeekTasks = () =>
 export const getMonthTasks = () => 
     tasks.filter(task => isThisMonth(task.dueDate));
 
-export const saveTasks = () => 
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+export const saveTasks = () => storage.save("tasks", tasks);
 
 export const loadTasks = () => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const storedTasks = storage.load("tasks") || [];
     tasks = [];
     storedTasks.forEach(task => {
         const taskObj = new Task(task.title, task.priorityLevel, new Date(task.dueDate), task.project);

@@ -1,8 +1,8 @@
 import { format } from "date-fns";
-import { getAllProjects } from "../modules/project";
-import { createTask, editTask } from "../modules/tasks";
-import { createTextElement } from "../modules/utils";
-import { reloadCurrentPage } from "./nav-dom";
+import { getAllProjects } from "../../modules/project";
+import { createTask, editTask } from "../../modules/tasks";
+import { createTextElement } from "../../modules/utils";
+import { reloadCurrentPage } from "../nav-dom";
 
 const dialog = document.getElementById("tasks-modal");
 const form = document.getElementById("task-form");

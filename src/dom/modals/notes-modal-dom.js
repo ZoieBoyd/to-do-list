@@ -1,5 +1,5 @@
-import { createNote } from "../modules/notes";
-import { reloadCurrentPage } from "./nav-dom";
+import { createNote } from "../../modules/notes";
+import { reloadCurrentPage } from "../nav-dom";
 
 const dialog = document.getElementById("notes-modal");
 const form = document.getElementById("note-form");

@@ -125,6 +125,8 @@ h5 {
 
 footer {
    margin-top: auto;
+   text-align: center;
+   font-size: 1.2rem;
 }
 
 #hamburger-menu {
@@ -164,6 +166,10 @@ footer {
 #hamburger-menu:has(input:checked)::after {
     rotate: -45deg;
     translate: 0 calc(var(--hamburger-bar-height) / 2);
+}
+
+a, a:visited {
+    color: var(--highlight-color);
 }
 
 @media (max-width: 600px) {

@@ -1,6 +1,6 @@
 import { createTextElement, clearMainContent } from "../modules/utils";
-import { deleteTask } from "../modules/tasks";
-import { renderAddTaskModal, renderEditTaskModal, renderProjectDropdown } from "./tasks-modal-dom";
+import { deleteTask, saveTasks } from "../modules/tasks";
+import { renderAddTaskModal, renderEditTaskModal, renderProjectDropdown } from "./modals/tasks-modal-dom";
 import { format } from "date-fns"; 
 
 import add from "../images/add.svg";
@@ -86,10 +86,20 @@ function createEditButton(task) {
 }
 
 function createCompleteCheckbox(task) { 
+    const completeContainer = document.createElement("div");
+    completeContainer.classList.add("complete-container");
+
     const completeCheckbox = document.createElement("input");
+    completeCheckbox.id = `${task.title.toLowerCase().replace(/\s/g, '-')}-checkbox`;
+
+    const completeLabel = document.createElement("label");
+    completeLabel.htmlFor = `${task.title.replace(/\s/g, '-').toLowerCase()}-checkbox`;
     completeCheckbox.type = "checkbox";
-    completeCheckbox.classList = "complete-checkbox";
     completeCheckbox.checked = task["isComplete"]; 
-    completeCheckbox.onclick = () => task.toggleComplete(); 
-    return completeCheckbox;
+    completeCheckbox.onclick = () => { 
+        task.toggleComplete(); 
+        saveTasks(); 
+    }; 
+    completeContainer.append(completeCheckbox, completeLabel);
+    return completeContainer;
 }

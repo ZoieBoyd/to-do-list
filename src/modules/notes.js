@@ -1,3 +1,5 @@
+import { storage } from "./storage";
+
 class Note {
     constructor(title, content) {
         this.title = title;
@@ -19,8 +21,6 @@ export const deleteNote = (note) => {
     saveNotes();
 };
 
-export const saveNotes = () =>
-    localStorage.setItem("notes", JSON.stringify(notes));
+export const saveNotes = () => storage.save("notes", notes);
 
-export const loadNotes = () =>
-    notes = JSON.parse(localStorage.getItem("notes")) || [];
+export const loadNotes = () => notes = storage.load("notes") || [];

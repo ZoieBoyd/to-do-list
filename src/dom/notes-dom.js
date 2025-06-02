@@ -8,6 +8,7 @@ import add from "../images/add.svg";
 const dialog = document.getElementById("notes-modal");
 
 const mainContainer = document.getElementById("main-content");
+
 export function renderNotes() {
     const notes = getNotes();
     mainContainer.appendChild(createTextElement("h1", "Notes"));

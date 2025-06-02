@@ -1,5 +1,5 @@
-import { deleteProject } from "../modules/project";
-import { reloadCurrentPage } from "./nav-dom";
+import { deleteProject } from "../../modules/project";
+import { reloadCurrentPage } from "../nav-dom";
 
 let projectToDelete;
 const confirmDeleteModal = document.getElementById("delete-project-modal");

@@ -1,5 +1,9 @@
+import { storage } from "../modules/storage";
+
 const root = document.documentElement;
+
 const themeToggle = document.getElementById("theme-switch");
+themeToggle.addEventListener("click", () => setTheme());
 
 export const setTheme = () => {
     const currentTheme = root.className === "dark" ? "light" : "dark";
@@ -7,10 +11,9 @@ export const setTheme = () => {
     saveTheme(currentTheme);
 };
 
-export const saveTheme = (currentTheme) =>
-    localStorage.setItem("theme", JSON.stringify(currentTheme));
+export const saveTheme = (currentTheme) => storage.save("theme", currentTheme);
 
 export const loadTheme = () => {
-    root.className = JSON.parse(localStorage.getItem("theme"));
+    root.className = storage.load("theme");
     themeToggle.checked = root.className === "dark";
 };
