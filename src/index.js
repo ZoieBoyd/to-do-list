@@ -1,7 +1,3 @@
-/* TODO: 
-- Refactor codebase to make it super ✨sexy✨ (follow SOLID design principles)
-*/
-
 import "./styles/styles.css";
 import "./styles/nav.css";
 import "./styles/tasks.css";

@@ -137,10 +137,11 @@ button, dialog {
 .add-element-btn {
     display: flex;
     align-items: center;
-    align-self: center;
+    align-self: flex-start;
+    margin-left: 9vw;
     text-align: left;
     gap: 0.5rem;
-    width: 73%;
+    width: 11%;
     background-color: transparent;
     color: var(--text-color);
     font-size: 1.25rem;   

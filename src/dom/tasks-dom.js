@@ -16,21 +16,26 @@ export function renderTasks(filter, title) {
     const tasks = filter();
     
     for(const task of tasks) {
-        const taskContainer = document.createElement("div");
-        taskContainer.classList.add("task-container");
-
-        setPriorityColor(task, taskContainer);
-
-        taskContainer.append(
-            createCompleteCheckbox(task),
-            createTextElement("p", task.title, "task-title"),
-            createTextElement("p", format(task.dueDate, 'MMM dd'), "task-date"),
-            createEditButton(task),
-            createDeleteButton(task)
-        );
-        toDoContainer.appendChild(taskContainer);
+        toDoContainer.appendChild(createTaskElement(task));
     }
     toDoContainer.appendChild(createAddTaskButton());
+}
+
+function createTaskElement(task) {
+    const taskContainer = document.createElement("div");
+    taskContainer.classList.add("task-container");
+    
+    setPriorityColor(task, taskContainer);
+
+    taskContainer.append(
+        createCompleteCheckbox(task),
+        createTextElement("p", task.title, "task-title"),
+        createTextElement("p", format(task.dueDate, 'MMM dd'), "task-date"),
+        createEditButton(task),
+        createDeleteButton(task)
+    );
+
+    return taskContainer;
 }
 
 function setPriorityColor(task, taskContainer) {
@@ -50,9 +55,11 @@ function setPriorityColor(task, taskContainer) {
 function createAddTaskButton() {
     const addTaskButton = document.createElement("button");
     addTaskButton.classList.add("add-element-btn");    
+
     const addIcon = document.createElement("img");
     addIcon.src = add;
     addIcon.classList.add("icon");
+
     addTaskButton.append(addIcon, document.createTextNode("Add task"));
     addTaskButton.addEventListener("click", () => {
         renderProjectDropdown();
@@ -65,12 +72,10 @@ function createAddTaskButton() {
 function createDeleteButton(task) {
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("task-delete-btn", "icon");
-
     deleteButton.addEventListener("click", () => {
         deleteTask(task);
         reloadCurrentPage();
     }); 
-
     return deleteButton;
 }
 

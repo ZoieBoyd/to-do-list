@@ -58,8 +58,9 @@ export function renderEditTaskModal(task) {
 
 function handleTaskSubmitButton() {
     submitButton.addEventListener("click", (event) => {
-        if(!form.checkValidity()) return;
         event.preventDefault();
+        if(!form.checkValidity()) return;
+
         const formInputs = getTaskFormInputs();
 
         if(modalMode === "add") {
@@ -67,6 +68,7 @@ function handleTaskSubmitButton() {
         } else if (modalMode === "edit") {
             editTask(taskToEdit, ...formInputs);
         }
+        
         reloadCurrentPage();
         dialog.close();
         form.reset();
