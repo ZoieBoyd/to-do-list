@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="0628c2154ea6759e1e1c.ico">
+    <title>ToDo</title>
+<script defer src="main.js"></script></head>
+<body>
+    <dialog id="tasks-modal">
+        <form action="submit" id="task-form">
+            <button class= "close-modal-btn icon" id="close-task-modal-btn" type="button"></button>
+            <h2 id="modal-title">Add new task</h2>
+            <p>
+                <label for="task-title">Title</label>
+                <input name="task-title" type="text" id="task-title-input" maxlength="33" required>
+            </p>
+            <p>
+                <label for="project">Project</label>
+                <select name="project" id="project-dropdown" required></select>
+            </p>
+            <p>
+                <label for="priority">Priority</label>
+                <select name="priority" id="priority-dropdown" required>
+                    <option value="" disabled selected hidden>Select Priority</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </p>
+            <p>
+                <label for="due-date">Due Date</label>
+                <input name="due-date" type="date" id="due-date-input" required>
+            </p>
+            <button id="submit-task-btn" type="submit">Create Task</button>
+        </form>
+    </dialog>
+
+    <dialog id = "notes-modal">
+        <form action="submit" id="note-form">
+                <button class= "close-modal-btn image-btn icon" id="close-note-modal-btn" type="button"></button>
+                <h2>Add new note</h1>
+                <p>
+                    <label for="note-title">Title</label>
+                    <input name="note-title" type="text" id="note-title-input" maxlength="15" required>
+                </p>
+                <p>
+                    <textarea id="note-textarea" placeholder="Please type here..." rows="9" required></textarea>
+                </p>
+                <button id="submit-note-btn" type="submit">Create</button>
+            </form>
+    </dialog>
+
+    <dialog id = "delete-project-modal">
+        <div>
+            <img src="95e5cd10d282c4850f8b.svg" id="warning-icon">
+            <h3>Are you sure?</h3>
+            <p>All tasks within this project will be deleted.<br>This cannot be undone.</p>
+            <div>
+                <button id="cancel-delete-btn">Cancel</button>
+                <button id="confirm-delete-btn">Delete</button>
+            </div>
+        </div>
+    </dialog>
+
+    <label id="hamburger-menu">
+        <input type="checkbox">
+    </label>
+    <nav id = "nav">
+        <div id="user-details">
+            <img src="615cf347d3a4a5c613d2.svg" class="icon" alt="user profile image">
+            <h4>John Doe</h4>
+        </div>
+        <section id = "time-nav-options">
+            <button class="nav-option time-option active" id="today-btn"><img src="d749df9ded41d3e14c91.svg" class="icon">Today</button>
+            <button class="nav-option time-option" id="week-btn"><img src="297b6db8c34be362c242.svg" class="icon">This Week</button>
+            <button class="nav-option time-option" id="month-btn"><img src="213cee747d10b18915cf.svg" class="icon">This Month</button>
+            <button class="nav-option time-option" id="anytime-btn"><img src="423580f934f4fd566323.svg" class="icon">Anytime</button>
+        </section>
+        <section id = "project-nav-container">
+            <h5>Projects</h5>
+            <div id= project-nav-options></div>
+            <div class="hidden new-project-field">
+                <img src="8acd8669360f64ca7fb9.svg" class="icon">
+                <input type="text" placeholder="Project Name" class="project-input" id="new-project-input" maxlength="15">    
+            </div> 
+        </section>
+        <section>
+            <button id="new-project-btn"><img src="37c910d3388eef73ec0b.svg">Create New Project</button>
+        </section>
+        <section>
+            <button id="note-btn" class="nav-option"><img src="058dce8bdcd71e0d4c73.svg" class="icon">Notes</button>
+        </section>
+        <footer>
+            <small>Website developed & designed by <br><a href="https://github.com/ZoieBoyd">Zoie Boyd</a></small>
+        </footer>
+    </nav>
+
+    <main>
+        <section id = "main-content">
+        </section>
+    </main>
+
+    <section>
+        <div id = "theme-toggle-container">
+            <img src="2161726c8139de420744.svg" alt="Light mode icon" class="icon">
+            <input type="checkbox" id = "theme-switch">
+            <img src="893c2e621d6d26e5609a.svg" alt="Dark mode icon" class="icon">
+        </div>
+    </section>
+
+</body>
+</html>
