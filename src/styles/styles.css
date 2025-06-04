@@ -141,7 +141,7 @@ button, dialog {
     margin-left: 9vw;
     text-align: left;
     gap: 0.5rem;
-    width: 11%;
+    width: max-content;
     background-color: transparent;
     color: var(--text-color);
     font-size: 1.25rem;   

@@ -3,7 +3,8 @@ nav {
     flex-direction: column;
     background-color: var(--secondary-bg-color);
     padding: 1rem 1.4rem;
-    width: 16vw;
+    max-width: 16vw;
+    min-width: 250px;
     min-height: 100%;
     row-gap: 1.5rem;
 }
@@ -177,7 +178,7 @@ a, a:visited {
         position: absolute;
         top: 0;
         left: 0;
-        width: 80vw;
+        min-width: 80vw;
         padding-top: 2.5rem;
         transform: translateX(-100%);
         transition: transform var(--anim-timing);
