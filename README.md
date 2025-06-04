@@ -36,10 +36,13 @@ A simple, interactive to-do list to organise your life.
 * [SVGRepo | Dazzle Ui](https://www.svgrepo.com/author/Dazzle%20UI/)
 
 ## Gallery
+<div align="center">
 <img src = "screenshots/desktop-screenshot.png" alt = "Desktop screenshot"><br>
 <sub>Desktop Preview</sub>
+<hr>
 <img src = "screenshots/mobile-screenshot.png" alt = "Google Pixel 7 screenshot"><br>
 <sub>Mobile Preview</sub>
+</div>
 
 ## Assignment Instructions
 [Instructions provided by The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-todo-list)
