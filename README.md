@@ -14,9 +14,9 @@ A simple, interactive to-do list to organise your life.
 * Data is saved and loaded to preserve it between user sessions
 
 ### Potential Improvements
-* Improved responsivity on tablet devices
-* Sorting and Filtering options for tasks.
-* User profiles
+* Improve responsiveness on tablet devices
+* Sorting and Filtering options for tasks (e.g. by priority, completion status or due date)
+* User profiles (custom usernames, profile images)
 * Customisable color themes
 
 ## Built Using
@@ -35,21 +35,11 @@ A simple, interactive to-do list to organise your life.
 ### SVG Icon Credit
 * [SVGRepo | Dazzle Ui](https://www.svgrepo.com/author/Dazzle%20UI/)
 
-## Outcome
-
 ## Gallery
-<table>
-<tr>
-    <td align = "center">
-        <img src = "screenshots/desktop-screenshot.png" alt = "Desktop screenshot" width = "525"><br>
-        <sub>Desktop Preview</sub>
-    </td>
-    <td align = "center">
-        <img src = "screenshots/mobile-screenshot.png" alt = "Google Pixel 7 screenshot" width = "125"><br>
-        <sub>Mobile Preview</sub>
-    </td>
-</tr>
-</table>
+<img src = "screenshots/desktop-screenshot.png" alt = "Desktop screenshot"><br>
+<sub>Desktop Preview</sub>
+<img src = "screenshots/mobile-screenshot.png" alt = "Google Pixel 7 screenshot"><br>
+<sub>Mobile Preview</sub>
 
 ## Assignment Instructions
 [Instructions provided by The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-todo-list)
